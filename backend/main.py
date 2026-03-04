@@ -32,6 +32,7 @@ app.add_middleware(
         "http://localhost:3000",
         "https://fantasy-baseball-six.vercel.app",
     ],
+    allow_origin_regex=r"^https://fantasy-baseball-.*\.vercel\.app$",
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
