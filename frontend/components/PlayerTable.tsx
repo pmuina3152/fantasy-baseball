@@ -118,15 +118,15 @@ export default function PlayerTable({ players, type }: Props) {
         </thead>
 
         <tbody>
-          {(players as Record<string, unknown>[]).map((player, idx) => (
+          {players.map((player, idx) => (
             <tr
-              key={`${player["Name"]}-${idx}`}
+              key={`${player.Name}-${idx}`}
               className={`border-t border-gray-800/60 hover:bg-gray-800/50 transition-colors ${
                 idx % 2 === 0 ? "bg-gray-900" : "bg-gray-900/50"
               }`}
             >
               {cols.map((col) => {
-                const val = player[col.key];
+                const val = (player as any)[col.key];
 
                 // Rank
                 if (col.key === "rank") {
