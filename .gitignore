@@ -1,0 +1,21 @@
+# Node / Next.js
+frontend/node_modules/
+frontend/.next/
+
+# Python
+backend/venv/
+__pycache__/
+*.pyc
+
+# Env files
+frontend/.env.local
+backend/.env
+
+# Caches / data
+*.parquet
+*.pkl
+*.pickle
+
+# OS
+.DS_Store
+Thumbs.db
