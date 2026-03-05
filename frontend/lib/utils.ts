@@ -59,7 +59,7 @@ export function renormalise<T extends { total_z: number; score_0_100: number }>(
 
 /** Sum a single numeric field across an array of players. */
 function sumField(players: PlayerRow[], field: string): number {
-  return players.reduce((acc, p) => acc + ((p as Record<string, number>)[field] ?? 0), 0);
+  return players.reduce((acc, p) => acc + (((p as any)[field] as number) ?? 0), 0);
 }
 
 /** Round to 3 decimal places. */

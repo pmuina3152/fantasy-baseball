@@ -110,7 +110,7 @@ function HittersSection({
                   </td>
                   <td className="px-3 py-2 text-center text-gray-400">{player.Team ?? "—"}</td>
                   {statCols.map((c) => {
-                    const v = (player as Record<string, unknown>)[c];
+                    const v = (player as any)[c] as number | undefined;
                     const isZCol = c.startsWith("z");
                     return (
                       <td key={c} className={`px-3 py-2 text-center tabular-nums ${isZCol ? zC(v as number) : "text-gray-200"}`}>
@@ -239,7 +239,7 @@ function PitchersSection({
                   </td>
                   <td className="px-3 py-2 text-center text-gray-400">{player.Team ?? "—"}</td>
                   {statCols.map((c) => {
-                    const v = (player as Record<string, unknown>)[c];
+                    const v = (player as any)[c] as number | undefined;
                     const isZCol = c.startsWith("z");
                     return (
                       <td key={c} className={`px-3 py-2 text-center tabular-nums ${isZCol ? zC(v as number) : "text-gray-200"}`}>
