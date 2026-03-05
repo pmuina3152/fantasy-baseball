@@ -35,20 +35,21 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
-# ── CORS origins ──────────────────────────────────────────────────────────────
-_ORIGINS = ["http://localhost:3000"]
-if _frontend_url := os.getenv("FRONTEND_URL"):
-    _ORIGINS.append(_frontend_url.rstrip("/"))
-
 app = FastAPI(
     title="Fantasy Baseball Z-Score API",
     description="2025 MLB fantasy rankings powered by FanGraphs / pybaseball",
     version="2.0.0",
 )
 
+# ── CORS ───────────────────────────────────────────────────────────────────────
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=_ORIGINS,
+    allow_origins=[
+        "http://localhost:3000",
+        "https://fantasy-baseball-six.vercel.app",
+        "https://fantasy-baseball.vercel.app",
+    ],
+    allow_origin_regex=r"^https://fantasy-baseball-.*\.vercel\.app$",
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
