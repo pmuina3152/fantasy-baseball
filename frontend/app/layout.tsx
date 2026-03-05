@@ -1,10 +1,12 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import Nav from "@/components/Nav";
+import { AppProvider } from "@/context/AppContext";
 
 export const metadata: Metadata = {
-  title: "Fantasy Baseball Rankings 2025",
+  title: "Fantasy Baseball 2025",
   description:
-    "Top 100 fantasy baseball hitter and pitcher rankings by z-score for the 2025 MLB season",
+    "Rankings, Team Builder, and Trade Analyzer powered by 2025 MLB z-scores",
 };
 
 export default function RootLayout({
@@ -15,7 +17,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="bg-gray-950 text-white antialiased">
-        {children}
+        <AppProvider>
+          <Nav />
+          {children}
+        </AppProvider>
       </body>
     </html>
   );

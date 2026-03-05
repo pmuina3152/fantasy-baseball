@@ -61,15 +61,32 @@ def compute_hitter_zscores(df: pd.DataFrame) -> pd.DataFrame:
 
 # ── Pitchers ──────────────────────────────────────────────────────────────────
 
-def compute_pitcher_zscores(df: pd.DataFrame) -> pd.DataFrame:
+def compute_pitcher_zscores(
+    df: pd.DataFrame,
+    include_hld: bool = True,
+) -> pd.DataFrame:
+    """
+    Compute pitcher z-scores.
+
+    Args:
+        df:          DataFrame with pitching stats.
+        include_hld: Whether to include HLD in total_z.  Set False when using
+                     Baseball Reference date-range data which does not have holds.
+    """
     df = df.copy()
 
     for col in ["IP", "SO", "W", "SV", "HLD", "ERA", "WHIP"]:
         df[col] = pd.to_numeric(df[col], errors="coerce").fillna(0)
 
     # Counting stats — higher is better
-    for cat in ["SO", "W", "SV", "HLD"]:
+    for cat in ["SO", "W", "SV"]:
         df[f"z{cat}"] = _zscore(df[cat].astype(float))
+
+    # HLD — only meaningful when data is available
+    if include_hld:
+        df["zHLD"] = _zscore(df["HLD"].astype(float))
+    else:
+        df["zHLD"] = 0.0
 
     # ERA — lower is better; contribution = (leagueERA - playerERA) * IP
     league_era = df["ERA"].mean()
@@ -81,10 +98,13 @@ def compute_pitcher_zscores(df: pd.DataFrame) -> pd.DataFrame:
     whip_contrib = (league_whip - df["WHIP"]) * df["IP"]
     df["zWHIP"] = _zscore(whip_contrib)
 
-    # Total z-score and 0–100 normalisation
-    z_cols = ["zSO", "zW", "zSV", "zHLD", "zERA", "zWHIP"]
+    # Total z-score (HLD excluded for date-range views)
+    z_cols = ["zSO", "zW", "zSV", "zERA", "zWHIP"]
+    if include_hld:
+        z_cols.append("zHLD")
     df["total_z"] = df[z_cols].sum(axis=1)
 
+    # 0–100 normalisation
     min_z, max_z = df["total_z"].min(), df["total_z"].max()
     df["score_0_100"] = (
         100.0 * (df["total_z"] - min_z) / (max_z - min_z)
