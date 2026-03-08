@@ -262,9 +262,12 @@ def get_pitchers(
         return result
     except HTTPException:
         raise
-    except Exception:
+    except Exception as exc:
         logger.exception("Error in /api/pitchers")
-        raise HTTPException(status_code=500, detail="Failed to compute pitcher rankings.")
+        raise HTTPException(
+            status_code=500,
+            detail=f"Failed to compute pitcher rankings: {exc}",
+        )
 
 
 @app.get("/api/teams", tags=["roster"])
