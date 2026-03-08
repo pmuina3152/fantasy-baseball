@@ -35,7 +35,8 @@ _cache_dir = Path(CACHE_DIR)
 
 # Bump this string whenever the schema of cached DataFrames changes.
 # Old parquet files use the previous version key and are effectively ignored.
-_CACHE_VERSION = "v4"
+# v5: added PA column to batting cache so projections can use PA as rate denominator.
+_CACHE_VERSION = "v5"
 
 
 # ── Cache helpers ─────────────────────────────────────────────────────────────
@@ -125,7 +126,7 @@ def fetch_batting(season: int = 2025) -> pd.DataFrame:
     logger.info("Fetching batting stats for %d from FanGraphs...", season)
     df: pd.DataFrame = _retry(lambda: pybaseball.batting_stats(season, qual=1))
 
-    required = ["Name", "Team", "AB", "R", "HR", "RBI", "SB", "AVG"]
+    required = ["Name", "Team", "PA", "AB", "R", "HR", "RBI", "SB", "AVG"]
     missing = [c for c in required if c not in df.columns]
     if missing:
         raise ValueError(
@@ -134,7 +135,7 @@ def fetch_batting(season: int = 2025) -> pd.DataFrame:
         )
 
     df = df[required].copy()
-    for col in ["AB", "R", "HR", "RBI", "SB", "AVG"]:
+    for col in ["PA", "AB", "R", "HR", "RBI", "SB", "AVG"]:
         df[col] = pd.to_numeric(df[col], errors="coerce").fillna(0)
 
     df = df[df["AB"] >= MIN_AB].reset_index(drop=True)

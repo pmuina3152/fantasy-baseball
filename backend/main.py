@@ -202,25 +202,8 @@ def get_hitter_projections(
         return cached
 
     logger.info("Rebuilt projections fresh (key=%s)", cache_key)
-    # ── TEMPORARY DIAGNOSTIC LOGGING ── remove after confirming correct values ──
-    from projections import RATE_SCALE_FACTORS as _RSF
-    logger.info(
-        "RATE_SCALE_FACTORS at request time: HR=%.2f  R=%.2f  RBI=%.2f  SB=%.2f",
-        _RSF.get("HR_rate", 0), _RSF.get("R_rate", 0),
-        _RSF.get("RBI_rate", 0), _RSF.get("SB_rate", 0),
-    )
-    # ── END DIAGNOSTIC ─────────────────────────────────────────────────────────
     try:
         df = build_hitter_projections(limit=limit)
-        # ── TEMPORARY DIAGNOSTIC: top 3 per category before serialization ──────
-        for stat in ["HR", "R", "RBI", "SB"]:
-            top3 = df.nlargest(3, stat)[["Name", stat]].values.tolist()
-            logger.info(
-                "PRE-SERIALIZE top 3 %s: %s",
-                stat,
-                "  ".join(f"{n}={int(v)}" for n, v in top3),
-            )
-        # ── END DIAGNOSTIC ──────────────────────────────────────────────────────
         df.insert(0, "rank", range(1, len(df) + 1))
         df = _round_floats(df)
         result = {
@@ -233,10 +216,11 @@ def get_hitter_projections(
         return result
     except HTTPException:
         raise
-    except Exception:
+    except Exception as exc:
         logger.exception("Error in /api/hitters/projections")
         raise HTTPException(
-            status_code=500, detail="Failed to compute 2026 hitter projections."
+            status_code=500,
+            detail=f"Failed to compute 2026 hitter projections: {exc}",
         )
 
 

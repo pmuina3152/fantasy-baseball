@@ -817,51 +817,38 @@ def build_hitter_projections(limit: int = 500) -> pd.DataFrame:
     proj = _compute_skill_scores(proj)
 
     # ── Step 4: Compute pool stats from 2025 actuals for rate anchoring ───────
-    # Use the already-fetched 2025 full batting data to get actual rate context
-    fg_2025 = season_dfs[2025]
-    fg_2025_qual = fg_2025[fg_2025["pa"] >= MIN_PA_QUALIFY].copy()
-
-    # We need actual outcomes (HR, R, RBI, SB, AVG) from the 2025 batting data.
-    # These come from the standard data_fetcher which has actual result columns.
-    # Fetch 2025 results via the same pybaseball call (already disk-cached by
-    # data_fetcher.py, so this is effectively free).
+    # Use the disk-cached batting data (data_fetcher.fetch_batting) so this
+    # works in serverless environments where pybaseball is not installed.
+    # The cache file batting_2025_v4.parquet is committed to git and is present
+    # in _backend/cache/ after the Vercel build step (cp -r ../backend api/_backend).
+    #
+    # Previously this called pybaseball directly; on Vercel that ImportError was
+    # caught and a single-row fallback was used, which made std(ddof=1) = NaN,
+    # cascading NaN through all projected rates and crashing astype(int) in Step 7.
     try:
-        import pybaseball as _pb
-        actual_2025_raw: pd.DataFrame = _retry(
-            lambda: _pb.batting_stats(2025, qual=1)
-        )
-        idfg_col = next(
-            (c for c in ["IDfg", "playerid", "FG_ID"] if c in actual_2025_raw.columns), None
-        )
-        act = pd.DataFrame()
-        act["IDfg"] = (
-            pd.to_numeric(actual_2025_raw[idfg_col], errors="coerce")
-            if idfg_col else np.nan
-        )
-        act["pa"]  = pd.to_numeric(actual_2025_raw.get("PA", 0), errors="coerce").fillna(0)
-        act["HR"]  = pd.to_numeric(actual_2025_raw.get("HR", 0),  errors="coerce").fillna(0)
-        act["R"]   = pd.to_numeric(actual_2025_raw.get("R",  0),  errors="coerce").fillna(0)
-        act["RBI"] = pd.to_numeric(actual_2025_raw.get("RBI", 0), errors="coerce").fillna(0)
-        act["SB"]  = pd.to_numeric(actual_2025_raw.get("SB", 0),  errors="coerce").fillna(0)
-        act["AVG"] = pd.to_numeric(actual_2025_raw.get("AVG", 0), errors="coerce").fillna(0)
-        act = act[act["pa"] >= MIN_PA_QUALIFY].reset_index(drop=True)
-
-        # Compute actual rate stats
-        act["HR_rate"]  = act["HR"]  / act["pa"].replace(0, np.nan)
-        act["R_rate"]   = act["R"]   / act["pa"].replace(0, np.nan)
-        act["RBI_rate"] = act["RBI"] / act["pa"].replace(0, np.nan)
-        act["SB_rate"]  = act["SB"]  / act["pa"].replace(0, np.nan)
+        from data_fetcher import fetch_batting as _fetch_batting
+        act_raw = _fetch_batting(2025)
+        # fetch_batting v5+ includes PA; use it as the rate denominator so pool
+        # mean/std match the original PA-based calibration of RATE_SCALE_FACTORS.
+        pa_col = act_raw["PA"].replace(0, np.nan)
+        act_raw = act_raw.copy()
+        act_raw["HR_rate"]  = act_raw["HR"]  / pa_col
+        act_raw["R_rate"]   = act_raw["R"]   / pa_col
+        act_raw["RBI_rate"] = act_raw["RBI"] / pa_col
+        act_raw["SB_rate"]  = act_raw["SB"]  / pa_col
         # AVG is already a rate
-        pool_rates = act
+        pool_rates = act_raw[["HR_rate", "R_rate", "RBI_rate", "SB_rate", "AVG"]].dropna()
+        logger.info("Pool rate stats: %d players from cached batting data", len(pool_rates))
     except Exception as exc:
-        logger.error("Could not build pool rate stats: %s", exc)
-        # Fallback: use reasonable MLB averages if live data unavailable
+        logger.error("Could not build pool rate stats from cache: %s", exc)
+        # Fallback: three representative rows so std(ddof=1) is well-defined.
+        # A single-row fallback produces std=NaN which cascades to NaN projections.
         pool_rates = pd.DataFrame({
-            "HR_rate":  [0.034],
-            "R_rate":   [0.100],
-            "RBI_rate": [0.085],
-            "SB_rate":  [0.018],
-            "AVG":      [0.248],
+            "HR_rate":  [0.020, 0.034, 0.055],
+            "R_rate":   [0.070, 0.100, 0.135],
+            "RBI_rate": [0.060, 0.085, 0.115],
+            "SB_rate":  [0.005, 0.018, 0.050],
+            "AVG":      [0.210, 0.248, 0.290],
         })
 
     # ── Step 5: Project rates ─────────────────────────────────────────────────
@@ -916,10 +903,10 @@ def build_hitter_projections(limit: int = 500) -> pd.DataFrame:
     # ── Step 7: Projected counting totals ────────────────────────────────────
     logger.info("Computing projected totals...")
     ppa = proj["projected_PA"]
-    proj["HR"]  = (proj["proj_HR_rate"]  * ppa).round().clip(lower=0).astype(int)
-    proj["R"]   = (proj["proj_R_rate"]   * ppa).round().clip(lower=0).astype(int)
-    proj["RBI"] = (proj["proj_RBI_rate"] * ppa).round().clip(lower=0).astype(int)
-    proj["SB"]  = (proj["proj_SB_rate"]  * ppa).round().clip(lower=0).astype(int)
+    proj["HR"]  = (proj["proj_HR_rate"]  * ppa).round().clip(lower=0).fillna(0).astype(int)
+    proj["R"]   = (proj["proj_R_rate"]   * ppa).round().clip(lower=0).fillna(0).astype(int)
+    proj["RBI"] = (proj["proj_RBI_rate"] * ppa).round().clip(lower=0).fillna(0).astype(int)
+    proj["SB"]  = (proj["proj_SB_rate"]  * ppa).round().clip(lower=0).fillna(0).astype(int)
     proj["AVG"] = proj["proj_AVG"].clip(lower=0.0, upper=0.400).round(3)
 
     # ── Step 8: Fantasy z-scores ──────────────────────────────────────────────
