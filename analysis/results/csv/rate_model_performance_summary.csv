@@ -1,0 +1,13 @@
+target,model,cv_r2_mean,cv_r2_std,n_samples,n_season_pairs
+HR_rate,ElasticNetCV,0.4469,0.041,843,3
+HR_rate,RandomForestRegressor,0.4236,0.0253,843,3
+HR_rate,OLS,0.4786,,843,3
+R_rate,ElasticNetCV,0.1569,0.0219,843,3
+R_rate,RandomForestRegressor,0.1513,0.0164,843,3
+R_rate,OLS,0.2055,,843,3
+RBI_rate,ElasticNetCV,0.1996,0.0577,843,3
+RBI_rate,RandomForestRegressor,0.1901,0.038,843,3
+RBI_rate,OLS,0.246,,843,3
+SB_rate,ElasticNetCV,0.0979,0.0342,843,3
+SB_rate,RandomForestRegressor,0.1186,0.0077,843,3
+SB_rate,OLS,0.1264,,843,3

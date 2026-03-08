@@ -1,0 +1,97 @@
+{
+  "generated_at": "2026-03-07T21:57:30.548366Z",
+  "modeling_design": "year-over-year (season N predictors \u2192 season N+1 targets)",
+  "season_pairs": [
+    "2022 \u2192 2023",
+    "2023 \u2192 2024",
+    "2024 \u2192 2025"
+  ],
+  "targets": [
+    "HR",
+    "R",
+    "RBI",
+    "SB",
+    "AVG"
+  ],
+  "cv_type": "leave-one-season-out (GroupKFold by predictor_season)",
+  "model_performance": {
+    "HR": {
+      "elastic_net_cv_r2": 0.4526,
+      "elastic_net_cv_r2_std": 0.0344,
+      "rf_cv_r2": 0.4426,
+      "rf_cv_r2_std": 0.0236,
+      "ols_r2": 0.4636,
+      "ols_adj_r2": 0.4584,
+      "n_samples": 843,
+      "n_season_pairs": 3
+    },
+    "R": {
+      "elastic_net_cv_r2": 0.3663,
+      "elastic_net_cv_r2_std": 0.0281,
+      "rf_cv_r2": 0.3444,
+      "rf_cv_r2_std": 0.0177,
+      "ols_r2": 0.398,
+      "ols_adj_r2": 0.3922,
+      "n_samples": 843,
+      "n_season_pairs": 3
+    },
+    "RBI": {
+      "elastic_net_cv_r2": 0.37,
+      "elastic_net_cv_r2_std": 0.036,
+      "rf_cv_r2": 0.3622,
+      "rf_cv_r2_std": 0.0215,
+      "ols_r2": 0.3967,
+      "ols_adj_r2": 0.3909,
+      "n_samples": 843,
+      "n_season_pairs": 3
+    },
+    "SB": {
+      "elastic_net_cv_r2": 0.1248,
+      "elastic_net_cv_r2_std": 0.0189,
+      "rf_cv_r2": 0.1258,
+      "rf_cv_r2_std": 0.0249,
+      "ols_r2": 0.1491,
+      "ols_adj_r2": 0.1409,
+      "n_samples": 843,
+      "n_season_pairs": 3
+    },
+    "AVG": {
+      "elastic_net_cv_r2": 0.2522,
+      "elastic_net_cv_r2_std": 0.0102,
+      "rf_cv_r2": 0.2388,
+      "rf_cv_r2_std": 0.0024,
+      "ols_r2": 0.2838,
+      "ols_adj_r2": 0.277,
+      "n_samples": 843,
+      "n_season_pairs": 3
+    }
+  },
+  "top_3_predictors_by_target": {
+    "HR": [
+      "pa_predictor_season",
+      "barrel_pct",
+      "avg_exit_velocity"
+    ],
+    "R": [
+      "pa_predictor_season",
+      "max_exit_velocity",
+      "avg_exit_velocity"
+    ],
+    "RBI": [
+      "pa_predictor_season",
+      "avg_exit_velocity",
+      "hard_hit_pct"
+    ],
+    "SB": [
+      "age",
+      "pa_predictor_season",
+      "times_on_base_proxy"
+    ],
+    "AVG": [
+      "k_pct",
+      "pa_predictor_season",
+      "z_contact_pct"
+    ]
+  },
+  "note": "CV-R\u00b2 values are leave-one-season-out: train on N-1 season pairs, test on the held-out pair.  This is a genuine out-of-sample estimate."
+}

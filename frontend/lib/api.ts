@@ -7,8 +7,19 @@ import type {
   Timeframe,
 } from "./types";
 
+// DataMode is consumed by the rankings page — imported here for co-location.
+export type { DataMode } from "./types";
+
+// In the browser (client components), use a relative path so requests go to
+// the same origin — works on both Vercel (Python function) and local dev
+// (Next.js rewrites /api/* to localhost:8000, see next.config.js).
+//
+// During server-side rendering, a relative path has no base URL, so we fall
+// back to NEXT_PUBLIC_API_URL (default: http://localhost:8000).
 const BASE_URL =
-  process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
+  typeof window === "undefined"
+    ? (process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000")
+    : "";
 
 // ── Client-side in-memory cache ───────────────────────────────────────────────
 // Prevents duplicate network requests when switching pages or toggling stats.
@@ -63,6 +74,20 @@ export async function fetchHitters(
 ): Promise<HitterRow[]> {
   const data = await get<RankingsResponse<HitterRow>>(
     `/api/hitters?season=${season}&limit=${limit}&timeframe=${timeframe}`,
+  );
+  return data.players;
+}
+
+/**
+ * Fetch 2026 projected hitter rankings from the backend.
+ *
+ * Returns the same HitterRow[] shape as fetchHitters() so PlayerTable renders
+ * projected data without any component modifications.  The AB field on each
+ * row contains projected_PA; z-scores are computed identically on the backend.
+ */
+export async function fetchProjectedHitters(limit = 500): Promise<HitterRow[]> {
+  const data = await get<RankingsResponse<HitterRow>>(
+    `/api/hitters/projections?limit=${limit}`,
   );
   return data.players;
 }

@@ -1,0 +1,20 @@
+# Analysis pipeline — additional dependencies
+# Install with:  pip install -r requirements_analysis.txt
+#
+# Note: pybaseball, pandas, numpy, and pyarrow are already declared in
+# fantasy-baseball/backend/requirements.txt.  Install both files if setting
+# up a fresh virtual environment for the analysis package.
+
+# Machine learning
+scikit-learn>=1.4
+statsmodels>=0.14
+
+# Visualisation (optional but recommended for importance plots)
+matplotlib>=3.8
+seaborn>=0.13
+
+# Already in backend/requirements.txt — listed here for standalone installs
+pybaseball>=2.2
+pandas>=2.1
+numpy>=1.26
+pyarrow>=14.0

@@ -2,6 +2,7 @@
 
 export type PlayerType = "hitters" | "pitchers";
 export type DisplayMode = "zscore" | "raw";
+export type DataMode = "actual" | "projection";
 export type Timeframe = "season" | "last60g" | "last25g" | "last5g";
 
 // Stat keys — used for include/exclude filtering

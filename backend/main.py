@@ -28,6 +28,7 @@ from data_fetcher import (
     fetch_pitching_range,
 )
 from zscore import compute_hitter_zscores, compute_pitcher_zscores
+from projections import build_hitter_projections, PROJECTION_FINGERPRINT
 
 logging.basicConfig(
     level=logging.INFO,
@@ -42,14 +43,13 @@ app = FastAPI(
 )
 
 # ── CORS ───────────────────────────────────────────────────────────────────────
+# In production (Vercel) the frontend and this API are served from the same
+# origin, so no CORS headers are needed.  This middleware only matters for local
+# development where the Next.js dev server (port 3000) and the FastAPI server
+# (port 8000) are on separate origins.
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[
-        "http://localhost:3000",
-        "https://fantasy-baseball-six.vercel.app",
-        "https://fantasy-baseball.vercel.app",
-    ],
-    allow_origin_regex=r"^https://fantasy-baseball-.*\.vercel\.app$",
+    allow_origins=["http://localhost:3000"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -138,7 +138,7 @@ def health():
 @app.get("/api/hitters", tags=["rankings"])
 def get_hitters(
     season: int = Query(2025, ge=2000, le=2030),
-    limit: int = Query(100, ge=1, le=500),
+    limit: int = Query(100, ge=1, le=1000),
     timeframe: str = Query("season", description="season | last60 | last30 | last14"),
 ):
     """
@@ -173,6 +173,71 @@ def get_hitters(
     except Exception:
         logger.exception("Error in /api/hitters")
         raise HTTPException(status_code=500, detail="Failed to compute hitter rankings.")
+
+
+@app.get("/api/hitters/projections", tags=["rankings"])
+def get_hitter_projections(
+    limit: int = Query(500, ge=1, le=1000),
+):
+    """
+    2026 projected hitter rankings.
+
+    Uses a weighted multi-year skill model (2025×0.5 + 2024×0.3 + 2023×0.2) to
+    project HR, R, RBI, SB, and AVG.  Z-scores are computed identically to the
+    actual /api/hitters endpoint.
+
+    Response shape is the same as /api/hitters so the frontend PlayerTable
+    renders it without any modifications.
+    """
+    # Cache key includes a fingerprint of all projection config (scale factors,
+    # weights, stabilization constants, etc.).  Any change to those constants
+    # produces a new fingerprint, automatically bypassing the old cached result.
+    cache_key = f"hitters:projections:2026:{PROJECTION_FINGERPRINT}"
+    if cached := _mem_get(cache_key):
+        logger.info("Loaded projections from cache (key=%s)", cache_key)
+        # Honour limit even on a cache hit (slice the pre-sorted list)
+        if limit < len(cached.get("players", [])):
+            sliced = {**cached, "players": cached["players"][:limit], "count": limit}
+            return sliced
+        return cached
+
+    logger.info("Rebuilt projections fresh (key=%s)", cache_key)
+    # ── TEMPORARY DIAGNOSTIC LOGGING ── remove after confirming correct values ──
+    from projections import RATE_SCALE_FACTORS as _RSF
+    logger.info(
+        "RATE_SCALE_FACTORS at request time: HR=%.2f  R=%.2f  RBI=%.2f  SB=%.2f",
+        _RSF.get("HR_rate", 0), _RSF.get("R_rate", 0),
+        _RSF.get("RBI_rate", 0), _RSF.get("SB_rate", 0),
+    )
+    # ── END DIAGNOSTIC ─────────────────────────────────────────────────────────
+    try:
+        df = build_hitter_projections(limit=limit)
+        # ── TEMPORARY DIAGNOSTIC: top 3 per category before serialization ──────
+        for stat in ["HR", "R", "RBI", "SB"]:
+            top3 = df.nlargest(3, stat)[["Name", stat]].values.tolist()
+            logger.info(
+                "PRE-SERIALIZE top 3 %s: %s",
+                stat,
+                "  ".join(f"{n}={int(v)}" for n, v in top3),
+            )
+        # ── END DIAGNOSTIC ──────────────────────────────────────────────────────
+        df.insert(0, "rank", range(1, len(df) + 1))
+        df = _round_floats(df)
+        result = {
+            "players": _clean(df),
+            "count": len(df),
+            "season": 2026,
+            "timeframe": "projection",
+        }
+        _mem_set(cache_key, result)
+        return result
+    except HTTPException:
+        raise
+    except Exception:
+        logger.exception("Error in /api/hitters/projections")
+        raise HTTPException(
+            status_code=500, detail="Failed to compute 2026 hitter projections."
+        )
 
 
 @app.get("/api/pitchers", tags=["rankings"])

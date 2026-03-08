@@ -1,12 +1,23 @@
 # ── Configurable constants ────────────────────────────────────────────────────
 
+import os
+from pathlib import Path
+
 # Default qualifying thresholds (full season)
 MIN_AB: int = 100
 MIN_IP: float = 20.0
 
-# Cache settings
+# ── Cache settings ─────────────────────────────────────────────────────────────
+# CACHE_DIR is anchored to this file's location so it resolves correctly
+# regardless of the working directory — important when running as a Vercel
+# serverless function where the CWD is not guaranteed to be backend/.
+CACHE_DIR: str = str(Path(__file__).parent / "cache")
+
+# In a Vercel serverless environment the cache files come from the deployment
+# bundle (committed to git) and are always treated as fresh — skip TTL checks.
+# In local development the normal 12-hour TTL applies.
 CACHE_MAX_AGE_HOURS: int = 12
-CACHE_DIR: str = "cache"
+ON_VERCEL: bool = os.environ.get("VERCEL") == "1"
 
 # Default season
 DEFAULT_SEASON: int = 2025

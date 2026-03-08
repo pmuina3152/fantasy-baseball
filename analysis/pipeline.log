@@ -1,0 +1,718 @@
+2026-03-07 15:56:19,761  INFO      __main__ — Running with all active season configs: [2025]
+2026-03-07 15:56:19,762  INFO      __main__ — ============================================================
+2026-03-07 15:56:19,762  INFO      __main__ —   MLB Hitter Modeling Pipeline — Starting
+2026-03-07 15:56:19,762  INFO      __main__ — ============================================================
+2026-03-07 15:56:19,762  INFO      dataset_builder — Merging features and targets for season 2025…
+2026-03-07 15:56:19,762  INFO      feature_builder — === Building first-half features | season=2025 | 2025-03-20 → 2025-07-15 ===
+2026-03-07 15:56:19,763  INFO      data_sources — Fetching FanGraphs full-season batting stats for 2025…
+2026-03-07 15:56:23,732  INFO      data_sources — FanGraphs batting 2025: 673 players, 320 columns available: ['+WPA', '-WPA', '1B', '2B', '3B', 'AB', 'AVG', 'AVG+', 'Age', 'Age Rng', 'BABIP', 'BABIP+', 'BB', 'BB%', 'BB%+', 'BB/K', 'BU', 'BUH', 'BUH%', 'Balls', 'Barrel%', 'Barrels', 'Bat', 'BsR', 'CB%', 'CBv', 'CH%', 'CH% (pi)', 'CH% (sc)', 'CH-X (pi)', 'CH-X (sc)', 'CH-Z (pi)', 'CH-Z (sc)', 'CHv', 'CS', 'CS% (pi)', 'CS-X (pi)', 'CS-Z (pi)', 'CSW%', 'CStr%', 'CT%', 'CTv', 'CU% (pi)', 'CU% (sc)', 'CU-X (pi)', 'CU-X (sc)', 'CU-Z (pi)', 'CU-Z (sc)', 'Cent%', 'Cent%+', 'Clutch', 'Contact%', 'Contact% (pi)', 'Contact% (sc)', 'Def', 'Dol', 'EP% (sc)', 'EP-X (sc)', 'EP-Z (sc)', 'EV', 'Events', 'F-Strike%', 'FA% (pi)', 'FA% (sc)', 'FA-X (pi)', 'FA-X (sc)', 'FA-Z (pi)', 'FA-Z (sc)', 'FB', 'FB%', 'FB% (Pitch)', 'FB%+', 'FBv', 'FC% (pi)', 'FC% (sc)', 'FC-X (pi)', 'FC-X (sc)', 'FC-Z (pi)', 'FC-Z (sc)', 'FO% (sc)', 'FO-X (sc)', 'FO-Z (sc)', 'FRM', 'FS% (pi)', 'FS% (sc)', 'FS-X (pi)', 'FS-X (sc)', 'FS-Z (pi)', 'FS-Z (sc)', 'FT% (sc)', 'FT-X (sc)', 'FT-Z (sc)', 'Fld', 'G', 'GB', 'GB%', 'GB%+', 'GB/FB', 'GDP', 'H', 'HBP', 'HR', 'HR/FB', 'HR/FB%+', 'Hard%', 'Hard%+', 'HardHit', 'HardHit%', 'IBB', 'IDfg', 'IFFB', 'IFFB%', 'IFH', 'IFH%', 'ISO', 'ISO+', 'K%', 'K%+', 'KC% (sc)', 'KC-X (sc)', 'KC-Z (sc)', 'KN%', 'KN% (pi)', 'KN% (sc)', 'KN-X (pi)', 'KN-X (sc)', 'KN-Z (pi)', 'KN-Z (sc)', 'KNv', 'L-WAR', 'LA', 'LD', 'LD%', 'LD+%', 'Lg', 'Med%', 'Med%+', 'Name', 'O-Contact%', 'O-Contact% (pi)', 'O-Contact% (sc)', 'O-Swing%', 'O-Swing% (pi)', 'O-Swing% (sc)', 'OBP', 'OBP+', 'OPS', 'Off', 'Oppo%', 'Oppo%+', 'PA', 'PH', 'PO%', 'Pace', 'Pace (pi)', 'Pitches', 'Pos', 'Pull%', 'Pull%+', 'R', 'RAR', 'RBI', 'RE24', 'REW', 'Rep', 'SB', 'SB% (pi)', 'SB-X (pi)', 'SB-Z (pi)', 'SC% (sc)', 'SC-X (sc)', 'SC-Z (sc)', 'SF', 'SF%', 'SFv', 'SH', 'SI% (pi)', 'SI% (sc)', 'SI-X (pi)', 'SI-X (sc)', 'SI-Z (pi)', 'SI-Z (sc)', 'SL%', 'SL% (pi)', 'SL% (sc)', 'SL-X (pi)', 'SL-X (sc)', 'SL-Z (pi)', 'SL-Z (sc)', 'SLG', 'SLG+', 'SLv', 'SO', 'Season', 'Soft%', 'Soft%+', 'Spd', 'Strikes', 'SwStr%', 'Swing%', 'Swing% (pi)', 'Swing% (sc)', 'TTO%', 'Team', 'UBR', 'UN% (sc)', 'WAR', 'WPA', 'WPA/LI', 'XX%', 'XX% (pi)', 'XX-X (pi)', 'XX-Z (pi)', 'Z-Contact%', 'Z-Contact% (pi)', 'Z-Contact% (sc)', 'Z-Swing%', 'Z-Swing% (pi)', 'Z-Swing% (sc)', 'Zone%', 'Zone% (pi)', 'Zone% (sc)', 'maxEV', 'pLI', 'phLI', 'vCH (pi)', 'vCH (sc)', 'vCS (pi)', 'vCU (pi)', 'vCU (sc)', 'vEP (sc)', 'vFA (pi)', 'vFA (sc)', 'vFC (pi)', 'vFC (sc)', 'vFO (sc)', 'vFS (pi)', 'vFS (sc)', 'vFT (sc)', 'vKC (sc)', 'vKN (pi)', 'vKN (sc)', 'vSB (pi)', 'vSC (sc)', 'vSI (pi)', 'vSI (sc)', 'vSL (pi)', 'vSL (sc)', 'vXX (pi)', 'wCB', 'wCB/C', 'wCH', 'wCH (pi)', 'wCH (sc)', 'wCH/C', 'wCH/C (pi)', 'wCH/C (sc)', 'wCS (pi)', 'wCS/C (pi)', 'wCT', 'wCT/C', 'wCU (pi)', 'wCU (sc)', 'wCU/C (pi)', 'wCU/C (sc)', 'wEP (sc)', 'wEP/C (sc)', 'wFA (pi)', 'wFA (sc)', 'wFA/C (pi)', 'wFA/C (sc)', 'wFB', 'wFB/C', 'wFC (pi)', 'wFC (sc)', 'wFC/C (pi)', 'wFC/C (sc)', 'wFO (sc)', 'wFO/C (sc)', 'wFS (pi)', 'wFS (sc)', 'wFS/C (pi)', 'wFS/C (sc)', 'wFT (sc)', 'wFT/C (sc)', 'wGDP', 'wKC (sc)', 'wKC/C (sc)', 'wKN', 'wKN (pi)', 'wKN (sc)', 'wKN/C', 'wKN/C (pi)', 'wKN/C (sc)', 'wOBA', 'wRAA', 'wRC', 'wRC+', 'wSB', 'wSB (pi)', 'wSB/C (pi)', 'wSC (sc)', 'wSC/C (sc)', 'wSF', 'wSF/C', 'wSI (pi)', 'wSI (sc)', 'wSI/C (pi)', 'wSI/C (sc)', 'wSL', 'wSL (pi)', 'wSL (sc)', 'wSL/C', 'wSL/C (pi)', 'wSL/C (sc)', 'wXX (pi)', 'wXX/C (pi)', 'xBA', 'xSLG', 'xwOBA']
+2026-03-07 15:56:23,753  INFO      utils — Cached 'fg_batting_full_2025' → 673 rows
+2026-03-07 15:56:23,754  INFO      data_sources — Fetching BRef batting stats 2025-03-20 → 2025-07-15…
+2026-03-07 15:56:24,084  WARNING   utils — Attempt 1/3 failed: list index out of range
+2026-03-07 15:56:30,010  WARNING   utils — Attempt 2/3 failed: list index out of range
+2026-03-07 15:56:36,023  WARNING   utils — Attempt 3/3 failed: list index out of range
+2026-03-07 15:56:36,023  ERROR     dataset_builder — Failed to build dataset for season 2025: list index out of range — skipping.
+2026-03-07 16:12:42,330  INFO      __main__ — Running with all active pairs: ['2022→2023', '2023→2024', '2024→2025']
+2026-03-07 16:12:42,331  INFO      __main__ — ============================================================
+2026-03-07 16:12:42,331  INFO      __main__ —   MLB Hitter Modeling Pipeline (year-over-year) — Starting
+2026-03-07 16:12:42,331  INFO      __main__ — ============================================================
+2026-03-07 16:12:42,332  INFO      dataset_builder — Merging pair: predictor=2022 → target=2023
+2026-03-07 16:12:42,332  INFO      feature_builder — === Building predictor features | season=2022 ===
+2026-03-07 16:12:42,332  INFO      data_sources — Fetching FanGraphs full-season batting stats for 2022…
+2026-03-07 16:12:46,205  INFO      data_sources — FanGraphs batting 2022: 693 players, 320 columns available: ['+WPA', '-WPA', '1B', '2B', '3B', 'AB', 'AVG', 'AVG+', 'Age', 'Age Rng', 'BABIP', 'BABIP+', 'BB', 'BB%', 'BB%+', 'BB/K', 'BU', 'BUH', 'BUH%', 'Balls', 'Barrel%', 'Barrels', 'Bat', 'BsR', 'CB%', 'CBv', 'CH%', 'CH% (pi)', 'CH% (sc)', 'CH-X (pi)', 'CH-X (sc)', 'CH-Z (pi)', 'CH-Z (sc)', 'CHv', 'CS', 'CS% (pi)', 'CS-X (pi)', 'CS-Z (pi)', 'CSW%', 'CStr%', 'CT%', 'CTv', 'CU% (pi)', 'CU% (sc)', 'CU-X (pi)', 'CU-X (sc)', 'CU-Z (pi)', 'CU-Z (sc)', 'Cent%', 'Cent%+', 'Clutch', 'Contact%', 'Contact% (pi)', 'Contact% (sc)', 'Def', 'Dol', 'EP% (sc)', 'EP-X (sc)', 'EP-Z (sc)', 'EV', 'Events', 'F-Strike%', 'FA% (pi)', 'FA% (sc)', 'FA-X (pi)', 'FA-X (sc)', 'FA-Z (pi)', 'FA-Z (sc)', 'FB', 'FB%', 'FB% (Pitch)', 'FB%+', 'FBv', 'FC% (pi)', 'FC% (sc)', 'FC-X (pi)', 'FC-X (sc)', 'FC-Z (pi)', 'FC-Z (sc)', 'FO% (sc)', 'FO-X (sc)', 'FO-Z (sc)', 'FRM', 'FS% (pi)', 'FS% (sc)', 'FS-X (pi)', 'FS-X (sc)', 'FS-Z (pi)', 'FS-Z (sc)', 'FT% (sc)', 'FT-X (sc)', 'FT-Z (sc)', 'Fld', 'G', 'GB', 'GB%', 'GB%+', 'GB/FB', 'GDP', 'H', 'HBP', 'HR', 'HR/FB', 'HR/FB%+', 'Hard%', 'Hard%+', 'HardHit', 'HardHit%', 'IBB', 'IDfg', 'IFFB', 'IFFB%', 'IFH', 'IFH%', 'ISO', 'ISO+', 'K%', 'K%+', 'KC% (sc)', 'KC-X (sc)', 'KC-Z (sc)', 'KN%', 'KN% (pi)', 'KN% (sc)', 'KN-X (pi)', 'KN-X (sc)', 'KN-Z (pi)', 'KN-Z (sc)', 'KNv', 'L-WAR', 'LA', 'LD', 'LD%', 'LD+%', 'Lg', 'Med%', 'Med%+', 'Name', 'O-Contact%', 'O-Contact% (pi)', 'O-Contact% (sc)', 'O-Swing%', 'O-Swing% (pi)', 'O-Swing% (sc)', 'OBP', 'OBP+', 'OPS', 'Off', 'Oppo%', 'Oppo%+', 'PA', 'PH', 'PO%', 'Pace', 'Pace (pi)', 'Pitches', 'Pos', 'Pull%', 'Pull%+', 'R', 'RAR', 'RBI', 'RE24', 'REW', 'Rep', 'SB', 'SB% (pi)', 'SB-X (pi)', 'SB-Z (pi)', 'SC% (sc)', 'SC-X (sc)', 'SC-Z (sc)', 'SF', 'SF%', 'SFv', 'SH', 'SI% (pi)', 'SI% (sc)', 'SI-X (pi)', 'SI-X (sc)', 'SI-Z (pi)', 'SI-Z (sc)', 'SL%', 'SL% (pi)', 'SL% (sc)', 'SL-X (pi)', 'SL-X (sc)', 'SL-Z (pi)', 'SL-Z (sc)', 'SLG', 'SLG+', 'SLv', 'SO', 'Season', 'Soft%', 'Soft%+', 'Spd', 'Strikes', 'SwStr%', 'Swing%', 'Swing% (pi)', 'Swing% (sc)', 'TTO%', 'Team', 'UBR', 'UN% (sc)', 'WAR', 'WPA', 'WPA/LI', 'XX%', 'XX% (pi)', 'XX-X (pi)', 'XX-Z (pi)', 'Z-Contact%', 'Z-Contact% (pi)', 'Z-Contact% (sc)', 'Z-Swing%', 'Z-Swing% (pi)', 'Z-Swing% (sc)', 'Zone%', 'Zone% (pi)', 'Zone% (sc)', 'maxEV', 'pLI', 'phLI', 'vCH (pi)', 'vCH (sc)', 'vCS (pi)', 'vCU (pi)', 'vCU (sc)', 'vEP (sc)', 'vFA (pi)', 'vFA (sc)', 'vFC (pi)', 'vFC (sc)', 'vFO (sc)', 'vFS (pi)', 'vFS (sc)', 'vFT (sc)', 'vKC (sc)', 'vKN (pi)', 'vKN (sc)', 'vSB (pi)', 'vSC (sc)', 'vSI (pi)', 'vSI (sc)', 'vSL (pi)', 'vSL (sc)', 'vXX (pi)', 'wCB', 'wCB/C', 'wCH', 'wCH (pi)', 'wCH (sc)', 'wCH/C', 'wCH/C (pi)', 'wCH/C (sc)', 'wCS (pi)', 'wCS/C (pi)', 'wCT', 'wCT/C', 'wCU (pi)', 'wCU (sc)', 'wCU/C (pi)', 'wCU/C (sc)', 'wEP (sc)', 'wEP/C (sc)', 'wFA (pi)', 'wFA (sc)', 'wFA/C (pi)', 'wFA/C (sc)', 'wFB', 'wFB/C', 'wFC (pi)', 'wFC (sc)', 'wFC/C (pi)', 'wFC/C (sc)', 'wFO (sc)', 'wFO/C (sc)', 'wFS (pi)', 'wFS (sc)', 'wFS/C (pi)', 'wFS/C (sc)', 'wFT (sc)', 'wFT/C (sc)', 'wGDP', 'wKC (sc)', 'wKC/C (sc)', 'wKN', 'wKN (pi)', 'wKN (sc)', 'wKN/C', 'wKN/C (pi)', 'wKN/C (sc)', 'wOBA', 'wRAA', 'wRC', 'wRC+', 'wSB', 'wSB (pi)', 'wSB/C (pi)', 'wSC (sc)', 'wSC/C (sc)', 'wSF', 'wSF/C', 'wSI (pi)', 'wSI (sc)', 'wSI/C (pi)', 'wSI/C (sc)', 'wSL', 'wSL (pi)', 'wSL (sc)', 'wSL/C', 'wSL/C (pi)', 'wSL/C (sc)', 'wXX (pi)', 'wXX/C (pi)', 'xBA', 'xSLG', 'xwOBA']
+2026-03-07 16:12:46,234  INFO      utils — Cached 'fg_batting_full_2022' → 693 rows
+2026-03-07 16:12:46,234  INFO      data_sources — Fetching Statcast EV/barrel leaderboard for 2022 (min_bbe=50)…
+2026-03-07 16:12:46,872  INFO      data_sources — Statcast EV/barrel 2022: 497 players, columns: ['anglesweetspotpercent', 'attempts', 'avg_distance', 'avg_hit_angle', 'avg_hit_speed', 'avg_hr_distance', 'barrels', 'brl_pa', 'brl_percent', 'ev50', 'ev95percent', 'ev95plus', 'fbld', 'gb', 'last_name, first_name', 'max_distance', 'max_hit_speed', 'player_id']
+2026-03-07 16:12:46,875  INFO      utils — Cached 'statcast_ev_barrels_2022_50' → 497 rows
+2026-03-07 16:12:46,876  INFO      data_sources — Fetching sprint speed for 2022 (min_opp=10)…
+2026-03-07 16:12:47,491  INFO      data_sources — Sprint speed fetched via pybaseball.statcast_sprint_speed
+2026-03-07 16:12:47,492  INFO      data_sources — Sprint speed 2022: 586 players, columns: ['age', 'bolts', 'competitive_runs', 'hp_to_1b', 'last_name, first_name', 'player_id', 'position', 'sprint_speed', 'team', 'team_id']
+2026-03-07 16:12:47,494  INFO      utils — Cached 'sprint_speed_2022_10' → 586 rows
+2026-03-07 16:12:47,494  INFO      utils — Downloading Chadwick player register…
+2026-03-07 16:12:47,495  WARNING   utils — Attempt 1/3 failed: chadwick_register() got an unexpected keyword argument 'use_bref_id'
+2026-03-07 16:12:49,497  WARNING   utils — Attempt 2/3 failed: chadwick_register() got an unexpected keyword argument 'use_bref_id'
+2026-03-07 16:12:53,498  WARNING   utils — Attempt 3/3 failed: chadwick_register() got an unexpected keyword argument 'use_bref_id'
+2026-03-07 16:12:53,499  WARNING   utils — Chadwick register download failed (chadwick_register() got an unexpected keyword argument 'use_bref_id'). Falling back to name-only player matching.
+2026-03-07 16:12:53,500  INFO      feature_builder — FG 2022: features found=22, absent (SC/SP will fill)=2: ['sweet_spot_pct', 'sprint_speed']
+2026-03-07 16:12:53,513  INFO      feature_builder — Extracted rows — FG: 693 | SC: 1 | Sprint: 1
+2026-03-07 16:12:53,515  ERROR     dataset_builder — Failed pair 2022→2023: You are trying to merge on int64 and object columns for key 'fg_id'. If you wish to proceed you should use pd.concat — skipping.
+2026-03-07 16:12:53,516  INFO      dataset_builder — Merging pair: predictor=2023 → target=2024
+2026-03-07 16:12:53,516  INFO      feature_builder — === Building predictor features | season=2023 ===
+2026-03-07 16:12:53,516  INFO      data_sources — Fetching FanGraphs full-season batting stats for 2023…
+2026-03-07 16:12:57,129  INFO      data_sources — FanGraphs batting 2023: 656 players, 320 columns available: ['+WPA', '-WPA', '1B', '2B', '3B', 'AB', 'AVG', 'AVG+', 'Age', 'Age Rng', 'BABIP', 'BABIP+', 'BB', 'BB%', 'BB%+', 'BB/K', 'BU', 'BUH', 'BUH%', 'Balls', 'Barrel%', 'Barrels', 'Bat', 'BsR', 'CB%', 'CBv', 'CH%', 'CH% (pi)', 'CH% (sc)', 'CH-X (pi)', 'CH-X (sc)', 'CH-Z (pi)', 'CH-Z (sc)', 'CHv', 'CS', 'CS% (pi)', 'CS-X (pi)', 'CS-Z (pi)', 'CSW%', 'CStr%', 'CT%', 'CTv', 'CU% (pi)', 'CU% (sc)', 'CU-X (pi)', 'CU-X (sc)', 'CU-Z (pi)', 'CU-Z (sc)', 'Cent%', 'Cent%+', 'Clutch', 'Contact%', 'Contact% (pi)', 'Contact% (sc)', 'Def', 'Dol', 'EP% (sc)', 'EP-X (sc)', 'EP-Z (sc)', 'EV', 'Events', 'F-Strike%', 'FA% (pi)', 'FA% (sc)', 'FA-X (pi)', 'FA-X (sc)', 'FA-Z (pi)', 'FA-Z (sc)', 'FB', 'FB%', 'FB% (Pitch)', 'FB%+', 'FBv', 'FC% (pi)', 'FC% (sc)', 'FC-X (pi)', 'FC-X (sc)', 'FC-Z (pi)', 'FC-Z (sc)', 'FO% (sc)', 'FO-X (sc)', 'FO-Z (sc)', 'FRM', 'FS% (pi)', 'FS% (sc)', 'FS-X (pi)', 'FS-X (sc)', 'FS-Z (pi)', 'FS-Z (sc)', 'FT% (sc)', 'FT-X (sc)', 'FT-Z (sc)', 'Fld', 'G', 'GB', 'GB%', 'GB%+', 'GB/FB', 'GDP', 'H', 'HBP', 'HR', 'HR/FB', 'HR/FB%+', 'Hard%', 'Hard%+', 'HardHit', 'HardHit%', 'IBB', 'IDfg', 'IFFB', 'IFFB%', 'IFH', 'IFH%', 'ISO', 'ISO+', 'K%', 'K%+', 'KC% (sc)', 'KC-X (sc)', 'KC-Z (sc)', 'KN%', 'KN% (pi)', 'KN% (sc)', 'KN-X (pi)', 'KN-X (sc)', 'KN-Z (pi)', 'KN-Z (sc)', 'KNv', 'L-WAR', 'LA', 'LD', 'LD%', 'LD+%', 'Lg', 'Med%', 'Med%+', 'Name', 'O-Contact%', 'O-Contact% (pi)', 'O-Contact% (sc)', 'O-Swing%', 'O-Swing% (pi)', 'O-Swing% (sc)', 'OBP', 'OBP+', 'OPS', 'Off', 'Oppo%', 'Oppo%+', 'PA', 'PH', 'PO%', 'Pace', 'Pace (pi)', 'Pitches', 'Pos', 'Pull%', 'Pull%+', 'R', 'RAR', 'RBI', 'RE24', 'REW', 'Rep', 'SB', 'SB% (pi)', 'SB-X (pi)', 'SB-Z (pi)', 'SC% (sc)', 'SC-X (sc)', 'SC-Z (sc)', 'SF', 'SF%', 'SFv', 'SH', 'SI% (pi)', 'SI% (sc)', 'SI-X (pi)', 'SI-X (sc)', 'SI-Z (pi)', 'SI-Z (sc)', 'SL%', 'SL% (pi)', 'SL% (sc)', 'SL-X (pi)', 'SL-X (sc)', 'SL-Z (pi)', 'SL-Z (sc)', 'SLG', 'SLG+', 'SLv', 'SO', 'Season', 'Soft%', 'Soft%+', 'Spd', 'Strikes', 'SwStr%', 'Swing%', 'Swing% (pi)', 'Swing% (sc)', 'TTO%', 'Team', 'UBR', 'UN% (sc)', 'WAR', 'WPA', 'WPA/LI', 'XX%', 'XX% (pi)', 'XX-X (pi)', 'XX-Z (pi)', 'Z-Contact%', 'Z-Contact% (pi)', 'Z-Contact% (sc)', 'Z-Swing%', 'Z-Swing% (pi)', 'Z-Swing% (sc)', 'Zone%', 'Zone% (pi)', 'Zone% (sc)', 'maxEV', 'pLI', 'phLI', 'vCH (pi)', 'vCH (sc)', 'vCS (pi)', 'vCU (pi)', 'vCU (sc)', 'vEP (sc)', 'vFA (pi)', 'vFA (sc)', 'vFC (pi)', 'vFC (sc)', 'vFO (sc)', 'vFS (pi)', 'vFS (sc)', 'vFT (sc)', 'vKC (sc)', 'vKN (pi)', 'vKN (sc)', 'vSB (pi)', 'vSC (sc)', 'vSI (pi)', 'vSI (sc)', 'vSL (pi)', 'vSL (sc)', 'vXX (pi)', 'wCB', 'wCB/C', 'wCH', 'wCH (pi)', 'wCH (sc)', 'wCH/C', 'wCH/C (pi)', 'wCH/C (sc)', 'wCS (pi)', 'wCS/C (pi)', 'wCT', 'wCT/C', 'wCU (pi)', 'wCU (sc)', 'wCU/C (pi)', 'wCU/C (sc)', 'wEP (sc)', 'wEP/C (sc)', 'wFA (pi)', 'wFA (sc)', 'wFA/C (pi)', 'wFA/C (sc)', 'wFB', 'wFB/C', 'wFC (pi)', 'wFC (sc)', 'wFC/C (pi)', 'wFC/C (sc)', 'wFO (sc)', 'wFO/C (sc)', 'wFS (pi)', 'wFS (sc)', 'wFS/C (pi)', 'wFS/C (sc)', 'wFT (sc)', 'wFT/C (sc)', 'wGDP', 'wKC (sc)', 'wKC/C (sc)', 'wKN', 'wKN (pi)', 'wKN (sc)', 'wKN/C', 'wKN/C (pi)', 'wKN/C (sc)', 'wOBA', 'wRAA', 'wRC', 'wRC+', 'wSB', 'wSB (pi)', 'wSB/C (pi)', 'wSC (sc)', 'wSC/C (sc)', 'wSF', 'wSF/C', 'wSI (pi)', 'wSI (sc)', 'wSI/C (pi)', 'wSI/C (sc)', 'wSL', 'wSL (pi)', 'wSL (sc)', 'wSL/C', 'wSL/C (pi)', 'wSL/C (sc)', 'wXX (pi)', 'wXX/C (pi)', 'xBA', 'xSLG', 'xwOBA']
+2026-03-07 16:12:57,150  INFO      utils — Cached 'fg_batting_full_2023' → 656 rows
+2026-03-07 16:12:57,150  INFO      data_sources — Fetching Statcast EV/barrel leaderboard for 2023 (min_bbe=50)…
+2026-03-07 16:12:57,599  INFO      data_sources — Statcast EV/barrel 2023: 496 players, columns: ['anglesweetspotpercent', 'attempts', 'avg_distance', 'avg_hit_angle', 'avg_hit_speed', 'avg_hr_distance', 'barrels', 'brl_pa', 'brl_percent', 'ev50', 'ev95percent', 'ev95plus', 'fbld', 'gb', 'last_name, first_name', 'max_distance', 'max_hit_speed', 'player_id']
+2026-03-07 16:12:57,603  INFO      utils — Cached 'statcast_ev_barrels_2023_50' → 496 rows
+2026-03-07 16:12:57,603  INFO      data_sources — Fetching sprint speed for 2023 (min_opp=10)…
+2026-03-07 16:12:58,011  INFO      data_sources — Sprint speed fetched via pybaseball.statcast_sprint_speed
+2026-03-07 16:12:58,011  INFO      data_sources — Sprint speed 2023: 583 players, columns: ['age', 'bolts', 'competitive_runs', 'hp_to_1b', 'last_name, first_name', 'player_id', 'position', 'sprint_speed', 'team', 'team_id']
+2026-03-07 16:12:58,014  INFO      utils — Cached 'sprint_speed_2023_10' → 583 rows
+2026-03-07 16:12:58,014  INFO      utils — Downloading Chadwick player register…
+2026-03-07 16:12:58,014  WARNING   utils — Attempt 1/3 failed: chadwick_register() got an unexpected keyword argument 'use_bref_id'
+2026-03-07 16:13:00,015  WARNING   utils — Attempt 2/3 failed: chadwick_register() got an unexpected keyword argument 'use_bref_id'
+2026-03-07 16:13:04,016  WARNING   utils — Attempt 3/3 failed: chadwick_register() got an unexpected keyword argument 'use_bref_id'
+2026-03-07 16:13:04,017  WARNING   utils — Chadwick register download failed (chadwick_register() got an unexpected keyword argument 'use_bref_id'). Falling back to name-only player matching.
+2026-03-07 16:13:04,017  INFO      feature_builder — FG 2023: features found=22, absent (SC/SP will fill)=2: ['sweet_spot_pct', 'sprint_speed']
+2026-03-07 16:13:04,030  INFO      feature_builder — Extracted rows — FG: 655 | SC: 1 | Sprint: 1
+2026-03-07 16:13:04,032  ERROR     dataset_builder — Failed pair 2023→2024: You are trying to merge on int64 and object columns for key 'fg_id'. If you wish to proceed you should use pd.concat — skipping.
+2026-03-07 16:13:04,032  INFO      dataset_builder — Merging pair: predictor=2024 → target=2025
+2026-03-07 16:13:04,032  INFO      feature_builder — === Building predictor features | season=2024 ===
+2026-03-07 16:13:04,033  INFO      data_sources — Fetching FanGraphs full-season batting stats for 2024…
+2026-03-07 16:13:07,712  INFO      data_sources — FanGraphs batting 2024: 651 players, 320 columns available: ['+WPA', '-WPA', '1B', '2B', '3B', 'AB', 'AVG', 'AVG+', 'Age', 'Age Rng', 'BABIP', 'BABIP+', 'BB', 'BB%', 'BB%+', 'BB/K', 'BU', 'BUH', 'BUH%', 'Balls', 'Barrel%', 'Barrels', 'Bat', 'BsR', 'CB%', 'CBv', 'CH%', 'CH% (pi)', 'CH% (sc)', 'CH-X (pi)', 'CH-X (sc)', 'CH-Z (pi)', 'CH-Z (sc)', 'CHv', 'CS', 'CS% (pi)', 'CS-X (pi)', 'CS-Z (pi)', 'CSW%', 'CStr%', 'CT%', 'CTv', 'CU% (pi)', 'CU% (sc)', 'CU-X (pi)', 'CU-X (sc)', 'CU-Z (pi)', 'CU-Z (sc)', 'Cent%', 'Cent%+', 'Clutch', 'Contact%', 'Contact% (pi)', 'Contact% (sc)', 'Def', 'Dol', 'EP% (sc)', 'EP-X (sc)', 'EP-Z (sc)', 'EV', 'Events', 'F-Strike%', 'FA% (pi)', 'FA% (sc)', 'FA-X (pi)', 'FA-X (sc)', 'FA-Z (pi)', 'FA-Z (sc)', 'FB', 'FB%', 'FB% (Pitch)', 'FB%+', 'FBv', 'FC% (pi)', 'FC% (sc)', 'FC-X (pi)', 'FC-X (sc)', 'FC-Z (pi)', 'FC-Z (sc)', 'FO% (sc)', 'FO-X (sc)', 'FO-Z (sc)', 'FRM', 'FS% (pi)', 'FS% (sc)', 'FS-X (pi)', 'FS-X (sc)', 'FS-Z (pi)', 'FS-Z (sc)', 'FT% (sc)', 'FT-X (sc)', 'FT-Z (sc)', 'Fld', 'G', 'GB', 'GB%', 'GB%+', 'GB/FB', 'GDP', 'H', 'HBP', 'HR', 'HR/FB', 'HR/FB%+', 'Hard%', 'Hard%+', 'HardHit', 'HardHit%', 'IBB', 'IDfg', 'IFFB', 'IFFB%', 'IFH', 'IFH%', 'ISO', 'ISO+', 'K%', 'K%+', 'KC% (sc)', 'KC-X (sc)', 'KC-Z (sc)', 'KN%', 'KN% (pi)', 'KN% (sc)', 'KN-X (pi)', 'KN-X (sc)', 'KN-Z (pi)', 'KN-Z (sc)', 'KNv', 'L-WAR', 'LA', 'LD', 'LD%', 'LD+%', 'Lg', 'Med%', 'Med%+', 'Name', 'O-Contact%', 'O-Contact% (pi)', 'O-Contact% (sc)', 'O-Swing%', 'O-Swing% (pi)', 'O-Swing% (sc)', 'OBP', 'OBP+', 'OPS', 'Off', 'Oppo%', 'Oppo%+', 'PA', 'PH', 'PO%', 'Pace', 'Pace (pi)', 'Pitches', 'Pos', 'Pull%', 'Pull%+', 'R', 'RAR', 'RBI', 'RE24', 'REW', 'Rep', 'SB', 'SB% (pi)', 'SB-X (pi)', 'SB-Z (pi)', 'SC% (sc)', 'SC-X (sc)', 'SC-Z (sc)', 'SF', 'SF%', 'SFv', 'SH', 'SI% (pi)', 'SI% (sc)', 'SI-X (pi)', 'SI-X (sc)', 'SI-Z (pi)', 'SI-Z (sc)', 'SL%', 'SL% (pi)', 'SL% (sc)', 'SL-X (pi)', 'SL-X (sc)', 'SL-Z (pi)', 'SL-Z (sc)', 'SLG', 'SLG+', 'SLv', 'SO', 'Season', 'Soft%', 'Soft%+', 'Spd', 'Strikes', 'SwStr%', 'Swing%', 'Swing% (pi)', 'Swing% (sc)', 'TTO%', 'Team', 'UBR', 'UN% (sc)', 'WAR', 'WPA', 'WPA/LI', 'XX%', 'XX% (pi)', 'XX-X (pi)', 'XX-Z (pi)', 'Z-Contact%', 'Z-Contact% (pi)', 'Z-Contact% (sc)', 'Z-Swing%', 'Z-Swing% (pi)', 'Z-Swing% (sc)', 'Zone%', 'Zone% (pi)', 'Zone% (sc)', 'maxEV', 'pLI', 'phLI', 'vCH (pi)', 'vCH (sc)', 'vCS (pi)', 'vCU (pi)', 'vCU (sc)', 'vEP (sc)', 'vFA (pi)', 'vFA (sc)', 'vFC (pi)', 'vFC (sc)', 'vFO (sc)', 'vFS (pi)', 'vFS (sc)', 'vFT (sc)', 'vKC (sc)', 'vKN (pi)', 'vKN (sc)', 'vSB (pi)', 'vSC (sc)', 'vSI (pi)', 'vSI (sc)', 'vSL (pi)', 'vSL (sc)', 'vXX (pi)', 'wCB', 'wCB/C', 'wCH', 'wCH (pi)', 'wCH (sc)', 'wCH/C', 'wCH/C (pi)', 'wCH/C (sc)', 'wCS (pi)', 'wCS/C (pi)', 'wCT', 'wCT/C', 'wCU (pi)', 'wCU (sc)', 'wCU/C (pi)', 'wCU/C (sc)', 'wEP (sc)', 'wEP/C (sc)', 'wFA (pi)', 'wFA (sc)', 'wFA/C (pi)', 'wFA/C (sc)', 'wFB', 'wFB/C', 'wFC (pi)', 'wFC (sc)', 'wFC/C (pi)', 'wFC/C (sc)', 'wFO (sc)', 'wFO/C (sc)', 'wFS (pi)', 'wFS (sc)', 'wFS/C (pi)', 'wFS/C (sc)', 'wFT (sc)', 'wFT/C (sc)', 'wGDP', 'wKC (sc)', 'wKC/C (sc)', 'wKN', 'wKN (pi)', 'wKN (sc)', 'wKN/C', 'wKN/C (pi)', 'wKN/C (sc)', 'wOBA', 'wRAA', 'wRC', 'wRC+', 'wSB', 'wSB (pi)', 'wSB/C (pi)', 'wSC (sc)', 'wSC/C (sc)', 'wSF', 'wSF/C', 'wSI (pi)', 'wSI (sc)', 'wSI/C (pi)', 'wSI/C (sc)', 'wSL', 'wSL (pi)', 'wSL (sc)', 'wSL/C', 'wSL/C (pi)', 'wSL/C (sc)', 'wXX (pi)', 'wXX/C (pi)', 'xBA', 'xSLG', 'xwOBA']
+2026-03-07 16:13:07,735  INFO      utils — Cached 'fg_batting_full_2024' → 651 rows
+2026-03-07 16:13:07,735  INFO      data_sources — Fetching Statcast EV/barrel leaderboard for 2024 (min_bbe=50)…
+2026-03-07 16:13:08,143  INFO      data_sources — Statcast EV/barrel 2024: 485 players, columns: ['anglesweetspotpercent', 'attempts', 'avg_distance', 'avg_hit_angle', 'avg_hit_speed', 'avg_hr_distance', 'barrels', 'brl_pa', 'brl_percent', 'ev50', 'ev95percent', 'ev95plus', 'fbld', 'gb', 'last_name, first_name', 'max_distance', 'max_hit_speed', 'player_id']
+2026-03-07 16:13:08,147  INFO      utils — Cached 'statcast_ev_barrels_2024_50' → 485 rows
+2026-03-07 16:13:08,147  INFO      data_sources — Fetching sprint speed for 2024 (min_opp=10)…
+2026-03-07 16:13:08,500  INFO      data_sources — Sprint speed fetched via pybaseball.statcast_sprint_speed
+2026-03-07 16:13:08,500  INFO      data_sources — Sprint speed 2024: 566 players, columns: ['age', 'bolts', 'competitive_runs', 'hp_to_1b', 'last_name, first_name', 'player_id', 'position', 'sprint_speed', 'team', 'team_id']
+2026-03-07 16:13:08,503  INFO      utils — Cached 'sprint_speed_2024_10' → 566 rows
+2026-03-07 16:13:08,503  INFO      utils — Downloading Chadwick player register…
+2026-03-07 16:13:08,503  WARNING   utils — Attempt 1/3 failed: chadwick_register() got an unexpected keyword argument 'use_bref_id'
+2026-03-07 16:13:10,505  WARNING   utils — Attempt 2/3 failed: chadwick_register() got an unexpected keyword argument 'use_bref_id'
+2026-03-07 16:13:14,506  WARNING   utils — Attempt 3/3 failed: chadwick_register() got an unexpected keyword argument 'use_bref_id'
+2026-03-07 16:13:14,506  WARNING   utils — Chadwick register download failed (chadwick_register() got an unexpected keyword argument 'use_bref_id'). Falling back to name-only player matching.
+2026-03-07 16:13:14,507  INFO      feature_builder — FG 2024: features found=22, absent (SC/SP will fill)=2: ['sweet_spot_pct', 'sprint_speed']
+2026-03-07 16:13:14,518  INFO      feature_builder — Extracted rows — FG: 651 | SC: 1 | Sprint: 1
+2026-03-07 16:13:14,521  ERROR     dataset_builder — Failed pair 2024→2025: You are trying to merge on int64 and object columns for key 'fg_id'. If you wish to proceed you should use pd.concat — skipping.
+2026-03-07 16:15:21,707  INFO      __main__ — Running with all active pairs: ['2022→2023', '2023→2024', '2024→2025']
+2026-03-07 16:15:21,707  INFO      __main__ — ============================================================
+2026-03-07 16:15:21,707  INFO      __main__ —   MLB Hitter Modeling Pipeline (year-over-year) — Starting
+2026-03-07 16:15:21,707  INFO      __main__ — ============================================================
+2026-03-07 16:15:21,707  INFO      dataset_builder — Merging pair: predictor=2022 → target=2023
+2026-03-07 16:15:21,707  INFO      feature_builder — === Building predictor features | season=2022 ===
+2026-03-07 16:15:21,708  INFO      utils — Loading 'fg_batting_full_2022' from disk cache
+2026-03-07 16:15:21,816  INFO      utils — Loading 'statcast_ev_barrels_2022_50' from disk cache
+2026-03-07 16:15:21,819  INFO      utils — Loading 'sprint_speed_2022_10' from disk cache
+2026-03-07 16:15:21,822  INFO      utils — Downloading Chadwick player register…
+2026-03-07 16:15:21,822  WARNING   utils — Attempt 1/3 failed: chadwick_register() got an unexpected keyword argument 'use_bref_id'
+2026-03-07 16:15:23,823  WARNING   utils — Attempt 2/3 failed: chadwick_register() got an unexpected keyword argument 'use_bref_id'
+2026-03-07 16:15:27,824  WARNING   utils — Attempt 3/3 failed: chadwick_register() got an unexpected keyword argument 'use_bref_id'
+2026-03-07 16:15:27,824  WARNING   utils — Chadwick register download failed (chadwick_register() got an unexpected keyword argument 'use_bref_id'). Falling back to name-only player matching.
+2026-03-07 16:15:27,826  INFO      feature_builder — FG 2022: features found=22, absent (SC/SP will fill)=2: ['sweet_spot_pct', 'sprint_speed']
+2026-03-07 16:15:27,839  INFO      feature_builder — Extracted rows — FG: 693 | SC: 1 | Sprint: 1
+2026-03-07 16:15:27,841  ERROR     dataset_builder — Failed pair 2022→2023: You are trying to merge on int64 and object columns for key 'fg_id'. If you wish to proceed you should use pd.concat — skipping.
+2026-03-07 16:15:27,842  INFO      dataset_builder — Merging pair: predictor=2023 → target=2024
+2026-03-07 16:15:27,842  INFO      feature_builder — === Building predictor features | season=2023 ===
+2026-03-07 16:15:27,842  INFO      utils — Loading 'fg_batting_full_2023' from disk cache
+2026-03-07 16:15:27,854  INFO      utils — Loading 'statcast_ev_barrels_2023_50' from disk cache
+2026-03-07 16:15:27,856  INFO      utils — Loading 'sprint_speed_2023_10' from disk cache
+2026-03-07 16:15:27,858  INFO      utils — Downloading Chadwick player register…
+2026-03-07 16:15:27,858  WARNING   utils — Attempt 1/3 failed: chadwick_register() got an unexpected keyword argument 'use_bref_id'
+2026-03-07 16:15:29,859  WARNING   utils — Attempt 2/3 failed: chadwick_register() got an unexpected keyword argument 'use_bref_id'
+2026-03-07 16:15:33,860  WARNING   utils — Attempt 3/3 failed: chadwick_register() got an unexpected keyword argument 'use_bref_id'
+2026-03-07 16:15:33,860  WARNING   utils — Chadwick register download failed (chadwick_register() got an unexpected keyword argument 'use_bref_id'). Falling back to name-only player matching.
+2026-03-07 16:15:33,861  INFO      feature_builder — FG 2023: features found=22, absent (SC/SP will fill)=2: ['sweet_spot_pct', 'sprint_speed']
+2026-03-07 16:15:33,873  INFO      feature_builder — Extracted rows — FG: 655 | SC: 1 | Sprint: 1
+2026-03-07 16:15:33,875  ERROR     dataset_builder — Failed pair 2023→2024: You are trying to merge on int64 and object columns for key 'fg_id'. If you wish to proceed you should use pd.concat — skipping.
+2026-03-07 16:15:33,876  INFO      dataset_builder — Merging pair: predictor=2024 → target=2025
+2026-03-07 16:15:33,876  INFO      feature_builder — === Building predictor features | season=2024 ===
+2026-03-07 16:15:33,877  INFO      utils — Loading 'fg_batting_full_2024' from disk cache
+2026-03-07 16:15:33,890  INFO      utils — Loading 'statcast_ev_barrels_2024_50' from disk cache
+2026-03-07 16:15:33,892  INFO      utils — Loading 'sprint_speed_2024_10' from disk cache
+2026-03-07 16:15:33,894  INFO      utils — Downloading Chadwick player register…
+2026-03-07 16:15:33,894  WARNING   utils — Attempt 1/3 failed: chadwick_register() got an unexpected keyword argument 'use_bref_id'
+2026-03-07 16:15:35,896  WARNING   utils — Attempt 2/3 failed: chadwick_register() got an unexpected keyword argument 'use_bref_id'
+2026-03-07 16:15:39,897  WARNING   utils — Attempt 3/3 failed: chadwick_register() got an unexpected keyword argument 'use_bref_id'
+2026-03-07 16:15:39,897  WARNING   utils — Chadwick register download failed (chadwick_register() got an unexpected keyword argument 'use_bref_id'). Falling back to name-only player matching.
+2026-03-07 16:15:39,898  INFO      feature_builder — FG 2024: features found=22, absent (SC/SP will fill)=2: ['sweet_spot_pct', 'sprint_speed']
+2026-03-07 16:15:39,909  INFO      feature_builder — Extracted rows — FG: 651 | SC: 1 | Sprint: 1
+2026-03-07 16:15:39,911  ERROR     dataset_builder — Failed pair 2024→2025: You are trying to merge on int64 and object columns for key 'fg_id'. If you wish to proceed you should use pd.concat — skipping.
+2026-03-07 16:24:33,606  INFO      __main__ — Running with all active pairs: ['2022→2023', '2023→2024', '2024→2025']
+2026-03-07 16:24:33,623  INFO      __main__ — ============================================================
+2026-03-07 16:24:33,624  INFO      __main__ —   MLB Hitter Modeling Pipeline (year-over-year) — Starting
+2026-03-07 16:24:33,624  INFO      __main__ — ============================================================
+2026-03-07 16:24:33,624  INFO      dataset_builder — Merging pair: predictor=2022 → target=2023
+2026-03-07 16:24:33,624  INFO      feature_builder — === Building predictor features | season=2022 ===
+2026-03-07 16:24:33,625  INFO      utils — Loading 'fg_batting_full_2022' from disk cache
+2026-03-07 16:24:33,657  INFO      utils — Loading 'statcast_ev_barrels_2022_50' from disk cache
+2026-03-07 16:24:33,660  INFO      utils — Loading 'sprint_speed_2022_10' from disk cache
+2026-03-07 16:24:33,662  INFO      utils — Downloading Chadwick player register…
+2026-03-07 16:24:36,266  INFO      utils — Cached 'chadwick_register' → 25901 rows
+2026-03-07 16:24:36,505  INFO      utils — MLBAM → FanGraphs ID map: 24696 entries
+2026-03-07 16:24:36,510  INFO      feature_builder — FG 2022: features found=22, absent (SC/SP will fill)=2: ['sweet_spot_pct', 'sprint_speed']
+2026-03-07 16:24:36,521  INFO      feature_builder — Extracted rows — FG: 693 | SC: 1 | Sprint: 1
+2026-03-07 16:24:36,537  WARNING   feature_builder — Dropping excluded outcome columns: ['HR', 'R', 'RBI', 'SB', 'AVG', 'OBP', 'SLG', 'OPS', 'ISO', 'BABIP', 'wOBA', 'wRAA', 'wRC', 'xBA', 'xSLG', 'xwOBA']
+2026-03-07 16:24:36,538  INFO      feature_builder — Predictor features done: season=2022 | 693 players | 24 features | 693 players have ≥1 NaN feature (will be imputed)
+2026-03-07 16:24:36,539  INFO      target_builder — === Building targets | target_season=2023 ===
+2026-03-07 16:24:36,539  INFO      utils — Loading 'fg_batting_full_2023' from disk cache
+2026-03-07 16:24:36,554  INFO      target_builder — Targets done: target_season=2023 | 656 players
+2026-03-07 16:24:36,554  INFO      dataset_builder — Pre-merge counts — features: 693 players | targets: 656 players
+2026-03-07 16:24:36,555  INFO      dataset_builder — fg_id dtype    — features: Int64 | targets: Int64
+2026-03-07 16:24:36,555  INFO      dataset_builder — fg_id non-null — features: 693 / 693 | targets: 656 / 656
+2026-03-07 16:24:36,555  INFO      dataset_builder — fg_id overlap before merge: 528 players (feat only: 165 | tgt only: 128)
+2026-03-07 16:24:36,557  INFO      dataset_builder — After merge: 528 player-season pairs (from 693 features, 656 targets)
+2026-03-07 16:24:36,558  INFO      dataset_builder — Predictor PA filter (≥ 250): 528 → 298 players
+2026-03-07 16:24:36,558  INFO      dataset_builder — Target PA filter (≥ 100): 298 → 274 players
+2026-03-07 16:24:36,559  INFO      dataset_builder — Merging pair: predictor=2023 → target=2024
+2026-03-07 16:24:36,559  INFO      feature_builder — === Building predictor features | season=2023 ===
+2026-03-07 16:24:36,559  INFO      utils — Loading 'fg_batting_full_2023' from disk cache
+2026-03-07 16:24:36,569  INFO      utils — Loading 'statcast_ev_barrels_2023_50' from disk cache
+2026-03-07 16:24:36,572  INFO      utils — Loading 'sprint_speed_2023_10' from disk cache
+2026-03-07 16:24:36,573  INFO      feature_builder — FG 2023: features found=22, absent (SC/SP will fill)=2: ['sweet_spot_pct', 'sprint_speed']
+2026-03-07 16:24:36,582  INFO      feature_builder — Extracted rows — FG: 655 | SC: 1 | Sprint: 1
+2026-03-07 16:24:36,597  WARNING   feature_builder — Dropping excluded outcome columns: ['HR', 'R', 'RBI', 'SB', 'AVG', 'OBP', 'SLG', 'OPS', 'ISO', 'BABIP', 'wOBA', 'wRAA', 'wRC', 'xBA', 'xSLG', 'xwOBA']
+2026-03-07 16:24:36,598  INFO      feature_builder — Predictor features done: season=2023 | 655 players | 24 features | 655 players have ≥1 NaN feature (will be imputed)
+2026-03-07 16:24:36,599  INFO      target_builder — === Building targets | target_season=2024 ===
+2026-03-07 16:24:36,599  INFO      utils — Loading 'fg_batting_full_2024' from disk cache
+2026-03-07 16:24:36,614  INFO      target_builder — Targets done: target_season=2024 | 651 players
+2026-03-07 16:24:36,614  INFO      dataset_builder — Pre-merge counts — features: 655 players | targets: 651 players
+2026-03-07 16:24:36,615  INFO      dataset_builder — fg_id dtype    — features: Int64 | targets: Int64
+2026-03-07 16:24:36,615  INFO      dataset_builder — fg_id non-null — features: 655 / 655 | targets: 651 / 651
+2026-03-07 16:24:36,615  INFO      dataset_builder — fg_id overlap before merge: 515 players (feat only: 140 | tgt only: 136)
+2026-03-07 16:24:36,617  INFO      dataset_builder — After merge: 515 player-season pairs (from 655 features, 651 targets)
+2026-03-07 16:24:36,617  INFO      dataset_builder — Predictor PA filter (≥ 250): 515 → 313 players
+2026-03-07 16:24:36,618  INFO      dataset_builder — Target PA filter (≥ 100): 313 → 285 players
+2026-03-07 16:24:36,618  INFO      dataset_builder — Merging pair: predictor=2024 → target=2025
+2026-03-07 16:24:36,619  INFO      feature_builder — === Building predictor features | season=2024 ===
+2026-03-07 16:24:36,619  INFO      utils — Loading 'fg_batting_full_2024' from disk cache
+2026-03-07 16:24:36,629  INFO      utils — Loading 'statcast_ev_barrels_2024_50' from disk cache
+2026-03-07 16:24:36,631  INFO      utils — Loading 'sprint_speed_2024_10' from disk cache
+2026-03-07 16:24:36,633  INFO      feature_builder — FG 2024: features found=22, absent (SC/SP will fill)=2: ['sweet_spot_pct', 'sprint_speed']
+2026-03-07 16:24:36,643  INFO      feature_builder — Extracted rows — FG: 651 | SC: 1 | Sprint: 1
+2026-03-07 16:24:36,658  WARNING   feature_builder — Dropping excluded outcome columns: ['HR', 'R', 'RBI', 'SB', 'AVG', 'OBP', 'SLG', 'OPS', 'ISO', 'BABIP', 'wOBA', 'wRAA', 'wRC', 'xBA', 'xSLG', 'xwOBA']
+2026-03-07 16:24:36,659  INFO      feature_builder — Predictor features done: season=2024 | 651 players | 24 features | 651 players have ≥1 NaN feature (will be imputed)
+2026-03-07 16:24:36,660  INFO      target_builder — === Building targets | target_season=2025 ===
+2026-03-07 16:24:36,660  INFO      data_sources — Fetching FanGraphs full-season batting stats for 2025…
+2026-03-07 16:24:36,672  INFO      data_sources — FanGraphs batting 2025: 673 players, 320 columns available: ['+WPA', '-WPA', '1B', '2B', '3B', 'AB', 'AVG', 'AVG+', 'Age', 'Age Rng', 'BABIP', 'BABIP+', 'BB', 'BB%', 'BB%+', 'BB/K', 'BU', 'BUH', 'BUH%', 'Balls', 'Barrel%', 'Barrels', 'Bat', 'BsR', 'CB%', 'CBv', 'CH%', 'CH% (pi)', 'CH% (sc)', 'CH-X (pi)', 'CH-X (sc)', 'CH-Z (pi)', 'CH-Z (sc)', 'CHv', 'CS', 'CS% (pi)', 'CS-X (pi)', 'CS-Z (pi)', 'CSW%', 'CStr%', 'CT%', 'CTv', 'CU% (pi)', 'CU% (sc)', 'CU-X (pi)', 'CU-X (sc)', 'CU-Z (pi)', 'CU-Z (sc)', 'Cent%', 'Cent%+', 'Clutch', 'Contact%', 'Contact% (pi)', 'Contact% (sc)', 'Def', 'Dol', 'EP% (sc)', 'EP-X (sc)', 'EP-Z (sc)', 'EV', 'Events', 'F-Strike%', 'FA% (pi)', 'FA% (sc)', 'FA-X (pi)', 'FA-X (sc)', 'FA-Z (pi)', 'FA-Z (sc)', 'FB', 'FB%', 'FB% (Pitch)', 'FB%+', 'FBv', 'FC% (pi)', 'FC% (sc)', 'FC-X (pi)', 'FC-X (sc)', 'FC-Z (pi)', 'FC-Z (sc)', 'FO% (sc)', 'FO-X (sc)', 'FO-Z (sc)', 'FRM', 'FS% (pi)', 'FS% (sc)', 'FS-X (pi)', 'FS-X (sc)', 'FS-Z (pi)', 'FS-Z (sc)', 'FT% (sc)', 'FT-X (sc)', 'FT-Z (sc)', 'Fld', 'G', 'GB', 'GB%', 'GB%+', 'GB/FB', 'GDP', 'H', 'HBP', 'HR', 'HR/FB', 'HR/FB%+', 'Hard%', 'Hard%+', 'HardHit', 'HardHit%', 'IBB', 'IDfg', 'IFFB', 'IFFB%', 'IFH', 'IFH%', 'ISO', 'ISO+', 'K%', 'K%+', 'KC% (sc)', 'KC-X (sc)', 'KC-Z (sc)', 'KN%', 'KN% (pi)', 'KN% (sc)', 'KN-X (pi)', 'KN-X (sc)', 'KN-Z (pi)', 'KN-Z (sc)', 'KNv', 'L-WAR', 'LA', 'LD', 'LD%', 'LD+%', 'Lg', 'Med%', 'Med%+', 'Name', 'O-Contact%', 'O-Contact% (pi)', 'O-Contact% (sc)', 'O-Swing%', 'O-Swing% (pi)', 'O-Swing% (sc)', 'OBP', 'OBP+', 'OPS', 'Off', 'Oppo%', 'Oppo%+', 'PA', 'PH', 'PO%', 'Pace', 'Pace (pi)', 'Pitches', 'Pos', 'Pull%', 'Pull%+', 'R', 'RAR', 'RBI', 'RE24', 'REW', 'Rep', 'SB', 'SB% (pi)', 'SB-X (pi)', 'SB-Z (pi)', 'SC% (sc)', 'SC-X (sc)', 'SC-Z (sc)', 'SF', 'SF%', 'SFv', 'SH', 'SI% (pi)', 'SI% (sc)', 'SI-X (pi)', 'SI-X (sc)', 'SI-Z (pi)', 'SI-Z (sc)', 'SL%', 'SL% (pi)', 'SL% (sc)', 'SL-X (pi)', 'SL-X (sc)', 'SL-Z (pi)', 'SL-Z (sc)', 'SLG', 'SLG+', 'SLv', 'SO', 'Season', 'Soft%', 'Soft%+', 'Spd', 'Strikes', 'SwStr%', 'Swing%', 'Swing% (pi)', 'Swing% (sc)', 'TTO%', 'Team', 'UBR', 'UN% (sc)', 'WAR', 'WPA', 'WPA/LI', 'XX%', 'XX% (pi)', 'XX-X (pi)', 'XX-Z (pi)', 'Z-Contact%', 'Z-Contact% (pi)', 'Z-Contact% (sc)', 'Z-Swing%', 'Z-Swing% (pi)', 'Z-Swing% (sc)', 'Zone%', 'Zone% (pi)', 'Zone% (sc)', 'maxEV', 'pLI', 'phLI', 'vCH (pi)', 'vCH (sc)', 'vCS (pi)', 'vCU (pi)', 'vCU (sc)', 'vEP (sc)', 'vFA (pi)', 'vFA (sc)', 'vFC (pi)', 'vFC (sc)', 'vFO (sc)', 'vFS (pi)', 'vFS (sc)', 'vFT (sc)', 'vKC (sc)', 'vKN (pi)', 'vKN (sc)', 'vSB (pi)', 'vSC (sc)', 'vSI (pi)', 'vSI (sc)', 'vSL (pi)', 'vSL (sc)', 'vXX (pi)', 'wCB', 'wCB/C', 'wCH', 'wCH (pi)', 'wCH (sc)', 'wCH/C', 'wCH/C (pi)', 'wCH/C (sc)', 'wCS (pi)', 'wCS/C (pi)', 'wCT', 'wCT/C', 'wCU (pi)', 'wCU (sc)', 'wCU/C (pi)', 'wCU/C (sc)', 'wEP (sc)', 'wEP/C (sc)', 'wFA (pi)', 'wFA (sc)', 'wFA/C (pi)', 'wFA/C (sc)', 'wFB', 'wFB/C', 'wFC (pi)', 'wFC (sc)', 'wFC/C (pi)', 'wFC/C (sc)', 'wFO (sc)', 'wFO/C (sc)', 'wFS (pi)', 'wFS (sc)', 'wFS/C (pi)', 'wFS/C (sc)', 'wFT (sc)', 'wFT/C (sc)', 'wGDP', 'wKC (sc)', 'wKC/C (sc)', 'wKN', 'wKN (pi)', 'wKN (sc)', 'wKN/C', 'wKN/C (pi)', 'wKN/C (sc)', 'wOBA', 'wRAA', 'wRC', 'wRC+', 'wSB', 'wSB (pi)', 'wSB/C (pi)', 'wSC (sc)', 'wSC/C (sc)', 'wSF', 'wSF/C', 'wSI (pi)', 'wSI (sc)', 'wSI/C (pi)', 'wSI/C (sc)', 'wSL', 'wSL (pi)', 'wSL (sc)', 'wSL/C', 'wSL/C (pi)', 'wSL/C (sc)', 'wXX (pi)', 'wXX/C (pi)', 'xBA', 'xSLG', 'xwOBA']
+2026-03-07 16:24:36,700  INFO      utils — Cached 'fg_batting_full_2025' → 673 rows
+2026-03-07 16:24:36,707  INFO      target_builder — Targets done: target_season=2025 | 673 players
+2026-03-07 16:24:36,707  INFO      dataset_builder — Pre-merge counts — features: 651 players | targets: 673 players
+2026-03-07 16:24:36,708  INFO      dataset_builder — fg_id dtype    — features: Int64 | targets: Int64
+2026-03-07 16:24:36,708  INFO      dataset_builder — fg_id non-null — features: 651 / 651 | targets: 673 / 673
+2026-03-07 16:24:36,708  INFO      dataset_builder — fg_id overlap before merge: 536 players (feat only: 115 | tgt only: 137)
+2026-03-07 16:24:36,710  INFO      dataset_builder — After merge: 536 player-season pairs (from 651 features, 673 targets)
+2026-03-07 16:24:36,710  INFO      dataset_builder — Predictor PA filter (≥ 250): 536 → 307 players
+2026-03-07 16:24:36,711  INFO      dataset_builder — Target PA filter (≥ 100): 307 → 284 players
+2026-03-07 16:24:36,712  INFO      dataset_builder — Combined dataset: 843 player-season-pairs across 3 season pairs
+2026-03-07 16:24:36,712  INFO      dataset_builder —   2022→2023: 274 rows
+2026-03-07 16:24:36,712  INFO      dataset_builder —   2023→2024: 285 rows
+2026-03-07 16:24:36,713  INFO      dataset_builder —   2024→2025: 284 rows
+2026-03-07 16:24:36,714  INFO      dataset_builder — Features with NaN values before imputation:
+sprint_speed      841
+sweet_spot_pct    840
+2026-03-07 16:24:36,716  INFO      dataset_builder — Imputation complete (strategy='median').
+2026-03-07 16:24:36,734  INFO      dataset_builder — Saved → C:\Users\pmuin\Documents\fantasy-baseball\analysis\results\csv\hitter_model_dataset.csv  (843 rows)
+2026-03-07 16:24:36,734  INFO      dataset_builder — Saved → C:\Users\pmuin\Documents\fantasy-baseball\analysis\data\processed\hitter_model_dataset.parquet
+2026-03-07 16:24:36,735  INFO      __main__ — Modeling dataset: 843 player-season-pairs | 37 columns
+2026-03-07 16:24:36,735  INFO      __main__ — Training models for targets: ['HR', 'R', 'RBI', 'SB', 'AVG']
+2026-03-07 16:24:36,735  INFO      modeling — ─── Fitting models for target: next_HR ───
+2026-03-07 16:24:36,736  INFO      modeling — Target 'HR': 843 samples across 3 season groups | 23 features
+2026-03-07 16:24:36,737  INFO      modeling — [HR] Fitting ElasticNetCV…
+2026-03-07 16:24:36,737  INFO      modeling — CV: GroupKFold(3) — leave-one-season-out (groups: [2022, 2023, 2024])
+2026-03-07 16:24:38,572  INFO      modeling — [HR] ElasticNet CV-R²=0.453±0.034 | α=0.0706 | l1=0.10 | 23/23 features selected
+2026-03-07 16:24:38,573  INFO      modeling — [HR] Fitting RandomForest…
+2026-03-07 16:24:38,573  INFO      modeling — CV: GroupKFold(3) — leave-one-season-out (groups: [2022, 2023, 2024])
+2026-03-07 16:24:39,856  INFO      modeling — [HR] RF CV-R²=0.443±0.024
+2026-03-07 16:24:39,856  INFO      modeling — [HR] Fitting OLS on features: ['pa_predictor_season', 'barrel_pct', 'bb_pct', 'avg_exit_velocity', 'max_exit_velocity', 'age', 'k_pct', 'z_swing_pct']
+2026-03-07 16:26:34,409  INFO      __main__ - Running with all active pairs: ['2022→2023', '2023→2024', '2024→2025']
+2026-03-07 16:26:34,409  INFO      __main__ - ============================================================
+2026-03-07 16:26:34,409  INFO      __main__ -   MLB Hitter Modeling Pipeline (year-over-year) — Starting
+2026-03-07 16:26:34,409  INFO      __main__ - ============================================================
+2026-03-07 16:26:34,409  INFO      dataset_builder - Merging pair: predictor=2022 → target=2023
+2026-03-07 16:26:34,409  INFO      feature_builder - === Building predictor features | season=2022 ===
+2026-03-07 16:26:34,409  INFO      utils - Loading 'fg_batting_full_2022' from disk cache
+2026-03-07 16:26:34,440  INFO      utils - Loading 'statcast_ev_barrels_2022_50' from disk cache
+2026-03-07 16:26:34,442  INFO      utils - Loading 'sprint_speed_2022_10' from disk cache
+2026-03-07 16:26:34,444  INFO      utils - Loading 'chadwick_register' from disk cache
+2026-03-07 16:26:34,690  INFO      utils - MLBAM → FanGraphs ID map: 24696 entries
+2026-03-07 16:26:34,691  INFO      feature_builder - FG 2022: features found=22, absent (SC/SP will fill)=2: ['sweet_spot_pct', 'sprint_speed']
+2026-03-07 16:26:34,701  INFO      feature_builder - Extracted rows — FG: 693 | SC: 1 | Sprint: 1
+2026-03-07 16:26:34,717  WARNING   feature_builder - Dropping excluded outcome columns: ['HR', 'R', 'RBI', 'SB', 'AVG', 'OBP', 'SLG', 'OPS', 'ISO', 'BABIP', 'wOBA', 'wRAA', 'wRC', 'xBA', 'xSLG', 'xwOBA']
+2026-03-07 16:26:34,718  INFO      feature_builder - Predictor features done: season=2022 | 693 players | 24 features | 693 players have ≥1 NaN feature (will be imputed)
+2026-03-07 16:26:34,718  INFO      target_builder - === Building targets | target_season=2023 ===
+2026-03-07 16:26:34,719  INFO      utils - Loading 'fg_batting_full_2023' from disk cache
+2026-03-07 16:26:34,734  INFO      target_builder - Targets done: target_season=2023 | 656 players
+2026-03-07 16:26:34,734  INFO      dataset_builder - Pre-merge counts — features: 693 players | targets: 656 players
+2026-03-07 16:26:34,735  INFO      dataset_builder - fg_id dtype    — features: Int64 | targets: Int64
+2026-03-07 16:26:34,735  INFO      dataset_builder - fg_id non-null — features: 693 / 693 | targets: 656 / 656
+2026-03-07 16:26:34,735  INFO      dataset_builder - fg_id overlap before merge: 528 players (feat only: 165 | tgt only: 128)
+2026-03-07 16:26:34,738  INFO      dataset_builder - After merge: 528 player-season pairs (from 693 features, 656 targets)
+2026-03-07 16:26:34,738  INFO      dataset_builder - Predictor PA filter (≥ 250): 528 → 298 players
+2026-03-07 16:26:34,738  INFO      dataset_builder - Target PA filter (≥ 100): 298 → 274 players
+2026-03-07 16:26:34,738  INFO      dataset_builder - Merging pair: predictor=2023 → target=2024
+2026-03-07 16:26:34,738  INFO      feature_builder - === Building predictor features | season=2023 ===
+2026-03-07 16:26:34,739  INFO      utils - Loading 'fg_batting_full_2023' from disk cache
+2026-03-07 16:26:34,749  INFO      utils - Loading 'statcast_ev_barrels_2023_50' from disk cache
+2026-03-07 16:26:34,751  INFO      utils - Loading 'sprint_speed_2023_10' from disk cache
+2026-03-07 16:26:34,753  INFO      feature_builder - FG 2023: features found=22, absent (SC/SP will fill)=2: ['sweet_spot_pct', 'sprint_speed']
+2026-03-07 16:26:34,762  INFO      feature_builder - Extracted rows — FG: 655 | SC: 1 | Sprint: 1
+2026-03-07 16:26:34,777  WARNING   feature_builder - Dropping excluded outcome columns: ['HR', 'R', 'RBI', 'SB', 'AVG', 'OBP', 'SLG', 'OPS', 'ISO', 'BABIP', 'wOBA', 'wRAA', 'wRC', 'xBA', 'xSLG', 'xwOBA']
+2026-03-07 16:26:34,778  INFO      feature_builder - Predictor features done: season=2023 | 655 players | 24 features | 655 players have ≥1 NaN feature (will be imputed)
+2026-03-07 16:26:34,778  INFO      target_builder - === Building targets | target_season=2024 ===
+2026-03-07 16:26:34,779  INFO      utils - Loading 'fg_batting_full_2024' from disk cache
+2026-03-07 16:26:34,794  INFO      target_builder - Targets done: target_season=2024 | 651 players
+2026-03-07 16:26:34,794  INFO      dataset_builder - Pre-merge counts — features: 655 players | targets: 651 players
+2026-03-07 16:26:34,794  INFO      dataset_builder - fg_id dtype    — features: Int64 | targets: Int64
+2026-03-07 16:26:34,794  INFO      dataset_builder - fg_id non-null — features: 655 / 655 | targets: 651 / 651
+2026-03-07 16:26:34,795  INFO      dataset_builder - fg_id overlap before merge: 515 players (feat only: 140 | tgt only: 136)
+2026-03-07 16:26:34,797  INFO      dataset_builder - After merge: 515 player-season pairs (from 655 features, 651 targets)
+2026-03-07 16:26:34,797  INFO      dataset_builder - Predictor PA filter (≥ 250): 515 → 313 players
+2026-03-07 16:26:34,797  INFO      dataset_builder - Target PA filter (≥ 100): 313 → 285 players
+2026-03-07 16:26:34,797  INFO      dataset_builder - Merging pair: predictor=2024 → target=2025
+2026-03-07 16:26:34,797  INFO      feature_builder - === Building predictor features | season=2024 ===
+2026-03-07 16:26:34,798  INFO      utils - Loading 'fg_batting_full_2024' from disk cache
+2026-03-07 16:26:34,808  INFO      utils - Loading 'statcast_ev_barrels_2024_50' from disk cache
+2026-03-07 16:26:34,810  INFO      utils - Loading 'sprint_speed_2024_10' from disk cache
+2026-03-07 16:26:34,812  INFO      feature_builder - FG 2024: features found=22, absent (SC/SP will fill)=2: ['sweet_spot_pct', 'sprint_speed']
+2026-03-07 16:26:34,823  INFO      feature_builder - Extracted rows — FG: 651 | SC: 1 | Sprint: 1
+2026-03-07 16:26:34,838  WARNING   feature_builder - Dropping excluded outcome columns: ['HR', 'R', 'RBI', 'SB', 'AVG', 'OBP', 'SLG', 'OPS', 'ISO', 'BABIP', 'wOBA', 'wRAA', 'wRC', 'xBA', 'xSLG', 'xwOBA']
+2026-03-07 16:26:34,840  INFO      feature_builder - Predictor features done: season=2024 | 651 players | 24 features | 651 players have ≥1 NaN feature (will be imputed)
+2026-03-07 16:26:34,840  INFO      target_builder - === Building targets | target_season=2025 ===
+2026-03-07 16:26:34,840  INFO      utils - Loading 'fg_batting_full_2025' from disk cache
+2026-03-07 16:26:34,856  INFO      target_builder - Targets done: target_season=2025 | 673 players
+2026-03-07 16:26:34,856  INFO      dataset_builder - Pre-merge counts — features: 651 players | targets: 673 players
+2026-03-07 16:26:34,857  INFO      dataset_builder - fg_id dtype    — features: Int64 | targets: Int64
+2026-03-07 16:26:34,857  INFO      dataset_builder - fg_id non-null — features: 651 / 651 | targets: 673 / 673
+2026-03-07 16:26:34,857  INFO      dataset_builder - fg_id overlap before merge: 536 players (feat only: 115 | tgt only: 137)
+2026-03-07 16:26:34,859  INFO      dataset_builder - After merge: 536 player-season pairs (from 651 features, 673 targets)
+2026-03-07 16:26:34,860  INFO      dataset_builder - Predictor PA filter (≥ 250): 536 → 307 players
+2026-03-07 16:26:34,860  INFO      dataset_builder - Target PA filter (≥ 100): 307 → 284 players
+2026-03-07 16:26:34,860  INFO      dataset_builder - Combined dataset: 843 player-season-pairs across 3 season pairs
+2026-03-07 16:26:34,861  INFO      dataset_builder -   2022→2023: 274 rows
+2026-03-07 16:26:34,861  INFO      dataset_builder -   2023→2024: 285 rows
+2026-03-07 16:26:34,861  INFO      dataset_builder -   2024→2025: 284 rows
+2026-03-07 16:26:34,861  INFO      dataset_builder - Features with NaN values before imputation:
+sprint_speed      841
+sweet_spot_pct    840
+2026-03-07 16:26:34,864  INFO      dataset_builder - Imputation complete (strategy='median').
+2026-03-07 16:26:34,877  INFO      dataset_builder - Saved → C:\Users\pmuin\Documents\fantasy-baseball\analysis\results\csv\hitter_model_dataset.csv  (843 rows)
+2026-03-07 16:26:34,877  INFO      dataset_builder - Saved → C:\Users\pmuin\Documents\fantasy-baseball\analysis\data\processed\hitter_model_dataset.parquet
+2026-03-07 16:26:34,877  INFO      __main__ - Modeling dataset: 843 player-season-pairs | 37 columns
+2026-03-07 16:26:34,877  INFO      __main__ - Training models for targets: ['HR', 'R', 'RBI', 'SB', 'AVG']
+2026-03-07 16:26:34,877  INFO      modeling - --- Fitting models for target: next_HR ---
+2026-03-07 16:26:34,878  INFO      modeling - Target 'HR': 843 samples across 3 season groups | 23 features
+2026-03-07 16:26:34,878  INFO      modeling - [HR] Fitting ElasticNetCV…
+2026-03-07 16:26:34,878  INFO      modeling - CV: GroupKFold(3) — leave-one-season-out (groups: [2022, 2023, 2024])
+2026-03-07 16:26:36,634  INFO      modeling - [HR] ElasticNet CV-R2=0.453+/-0.034 | alpha=0.0706 | l1=0.10 | 23/23 features selected
+2026-03-07 16:26:36,634  INFO      modeling - [HR] Fitting RandomForest…
+2026-03-07 16:26:36,634  INFO      modeling - CV: GroupKFold(3) — leave-one-season-out (groups: [2022, 2023, 2024])
+2026-03-07 16:26:37,860  INFO      modeling - [HR] RF CV-R2=0.443+/-0.024
+2026-03-07 16:26:37,860  INFO      modeling - [HR] Fitting OLS on features: ['pa_predictor_season', 'barrel_pct', 'bb_pct', 'avg_exit_velocity', 'max_exit_velocity', 'age', 'k_pct', 'z_swing_pct']
+2026-03-07 16:26:37,863  INFO      modeling - [HR] OLS R²=0.464 | Adj-R²=0.458 | n=843
+2026-03-07 16:26:37,863  INFO      modeling - --- Fitting models for target: next_R ---
+2026-03-07 16:26:37,864  INFO      modeling - Target 'R': 843 samples across 3 season groups | 23 features
+2026-03-07 16:26:37,864  INFO      modeling - [R] Fitting ElasticNetCV…
+2026-03-07 16:26:37,864  INFO      modeling - CV: GroupKFold(3) — leave-one-season-out (groups: [2022, 2023, 2024])
+2026-03-07 16:26:39,135  INFO      modeling - [R] ElasticNet CV-R2=0.366+/-0.028 | alpha=0.4629 | l1=0.99 | 13/23 features selected
+2026-03-07 16:26:39,135  INFO      modeling - [R] Fitting RandomForest…
+2026-03-07 16:26:39,135  INFO      modeling - CV: GroupKFold(3) — leave-one-season-out (groups: [2022, 2023, 2024])
+2026-03-07 16:26:40,372  INFO      modeling - [R] RF CV-R2=0.344+/-0.018
+2026-03-07 16:26:40,372  INFO      modeling - [R] Fitting OLS on features: ['pa_predictor_season', 'age', 'k_pct', 'avg_exit_velocity', 'barrel_pct', 'bb_pct', 'max_exit_velocity', 'z_swing_pct']
+2026-03-07 16:26:40,374  INFO      modeling - [R] OLS R²=0.398 | Adj-R²=0.392 | n=843
+2026-03-07 16:26:40,375  INFO      modeling - --- Fitting models for target: next_RBI ---
+2026-03-07 16:26:40,376  INFO      modeling - Target 'RBI': 843 samples across 3 season groups | 23 features
+2026-03-07 16:26:40,376  INFO      modeling - [RBI] Fitting ElasticNetCV…
+2026-03-07 16:26:40,376  INFO      modeling - CV: GroupKFold(3) — leave-one-season-out (groups: [2022, 2023, 2024])
+2026-03-07 16:26:41,599  INFO      modeling - [RBI] ElasticNet CV-R2=0.370+/-0.036 | alpha=0.1392 | l1=0.50 | 18/23 features selected
+2026-03-07 16:26:41,599  INFO      modeling - [RBI] Fitting RandomForest…
+2026-03-07 16:26:41,599  INFO      modeling - CV: GroupKFold(3) — leave-one-season-out (groups: [2022, 2023, 2024])
+2026-03-07 16:26:42,863  INFO      modeling - [RBI] RF CV-R2=0.362+/-0.021
+2026-03-07 16:26:42,863  INFO      modeling - [RBI] Fitting OLS on features: ['pa_predictor_season', 'k_pct', 'age', 'barrel_pct', 'avg_exit_velocity', 'bb_pct', 'o_swing_pct', 'hard_hit_pct']
+2026-03-07 16:26:42,866  INFO      modeling - [RBI] OLS R²=0.397 | Adj-R²=0.391 | n=843
+2026-03-07 16:26:42,866  INFO      modeling - --- Fitting models for target: next_SB ---
+2026-03-07 16:26:42,867  INFO      modeling - Target 'SB': 843 samples across 3 season groups | 23 features
+2026-03-07 16:26:42,867  INFO      modeling - [SB] Fitting ElasticNetCV…
+2026-03-07 16:26:42,867  INFO      modeling - CV: GroupKFold(3) — leave-one-season-out (groups: [2022, 2023, 2024])
+2026-03-07 16:26:44,186  INFO      modeling - [SB] ElasticNet CV-R2=0.125+/-0.019 | alpha=0.1619 | l1=1.00 | 10/23 features selected
+2026-03-07 16:26:44,186  INFO      modeling - [SB] Fitting RandomForest…
+2026-03-07 16:26:44,186  INFO      modeling - CV: GroupKFold(3) — leave-one-season-out (groups: [2022, 2023, 2024])
+2026-03-07 16:26:45,440  INFO      modeling - [SB] RF CV-R2=0.127+/-0.026
+2026-03-07 16:26:45,440  INFO      modeling - [SB] Fitting OLS on features: ['age', 'pa_predictor_season', 'hard_hit_pct', 'max_exit_velocity', 'z_contact_pct', 'gb_pct', 'barrel_pct', 'bb_pct']
+2026-03-07 16:26:45,442  INFO      modeling - [SB] OLS R²=0.149 | Adj-R²=0.141 | n=843
+2026-03-07 16:26:45,442  INFO      modeling - --- Fitting models for target: next_AVG ---
+2026-03-07 16:26:45,443  INFO      modeling - Target 'AVG': 843 samples across 3 season groups | 23 features
+2026-03-07 16:26:45,443  INFO      modeling - [AVG] Fitting ElasticNetCV…
+2026-03-07 16:26:45,444  INFO      modeling - CV: GroupKFold(3) — leave-one-season-out (groups: [2022, 2023, 2024])
+2026-03-07 16:26:45,908  INFO      modeling - [AVG] ElasticNet CV-R2=0.252+/-0.010 | alpha=0.0033 | l1=0.10 | 15/23 features selected
+2026-03-07 16:26:45,908  INFO      modeling - [AVG] Fitting RandomForest…
+2026-03-07 16:26:45,908  INFO      modeling - CV: GroupKFold(3) — leave-one-season-out (groups: [2022, 2023, 2024])
+2026-03-07 16:26:46,338  INFO      modeling - [AVG] RF CV-R2=0.239+/-0.002
+2026-03-07 16:26:46,339  INFO      modeling - [AVG] Fitting OLS on features: ['k_pct', 'z_contact_pct', 'barrel_pct', 'avg_exit_velocity', 'z_swing_pct', 'age', 'pa_predictor_season', 'fb_pct']
+2026-03-07 16:26:46,341  INFO      modeling - [AVG] OLS R²=0.284 | Adj-R²=0.277 | n=843
+2026-03-07 16:26:46,341  INFO      modeling - === Modeling complete — 5 targets fitted ===
+2026-03-07 16:26:46,341  INFO      reporting - Saving all results…
+2026-03-07 16:26:46,342  INFO      reporting - Saved model performance summary → C:\Users\pmuin\Documents\fantasy-baseball\analysis\results\csv\model_performance_summary.csv
+2026-03-07 16:26:46,352  INFO      reporting - Saved ElasticNet features → C:\Users\pmuin\Documents\fantasy-baseball\analysis\results\csv\elastic_net_features.csv
+2026-03-07 16:26:46,355  INFO      reporting - Saved RF importances → C:\Users\pmuin\Documents\fantasy-baseball\analysis\results\csv\random_forest_importances.csv
+2026-03-07 16:26:46,357  INFO      reporting - Saved OLS coefficients → C:\Users\pmuin\Documents\fantasy-baseball\analysis\results\csv\ols_coefficients.csv
+2026-03-07 16:26:46,363  INFO      reporting - Saved target feature rankings → C:\Users\pmuin\Documents\fantasy-baseball\analysis\results\json\target_feature_rankings.json
+2026-03-07 16:26:46,364  INFO      reporting - Saved model summary JSON → C:\Users\pmuin\Documents\fantasy-baseball\analysis\results\json\model_summary.json
+2026-03-07 16:26:46,468  INFO      reporting - Saved player profiles JSON → C:\Users\pmuin\Documents\fantasy-baseball\analysis\results\json\player_profiles.json  (843 records)
+2026-03-07 16:26:46,673  INFO      reporting - Saved importance plot → C:\Users\pmuin\Documents\fantasy-baseball\analysis\results\plots\importance_HR.png
+2026-03-07 16:26:46,820  INFO      reporting - Saved importance plot → C:\Users\pmuin\Documents\fantasy-baseball\analysis\results\plots\importance_R.png
+2026-03-07 16:26:46,963  INFO      reporting - Saved importance plot → C:\Users\pmuin\Documents\fantasy-baseball\analysis\results\plots\importance_RBI.png
+2026-03-07 16:26:47,106  INFO      reporting - Saved importance plot → C:\Users\pmuin\Documents\fantasy-baseball\analysis\results\plots\importance_SB.png
+2026-03-07 16:26:47,258  INFO      reporting - Saved importance plot → C:\Users\pmuin\Documents\fantasy-baseball\analysis\results\plots\importance_AVG.png
+2026-03-07 16:26:47,258  INFO      reporting - All results saved.
+2026-03-07 16:26:47,258  INFO      reporting -   CSV  → C:\Users\pmuin\Documents\fantasy-baseball\analysis\results\csv
+2026-03-07 16:26:47,258  INFO      reporting -   JSON → C:\Users\pmuin\Documents\fantasy-baseball\analysis\results\json
+2026-03-07 16:26:47,258  INFO      reporting -   Plots→ C:\Users\pmuin\Documents\fantasy-baseball\analysis\results\plots
+2026-03-07 16:26:47,258  INFO      __main__ - ============================================================
+2026-03-07 16:26:47,258  INFO      __main__ -   Pipeline complete in 12.8 seconds
+2026-03-07 16:26:47,258  INFO      __main__ -   CSV  → C:\Users\pmuin\Documents\fantasy-baseball\analysis\results\csv
+2026-03-07 16:26:47,258  INFO      __main__ -   JSON → C:\Users\pmuin\Documents\fantasy-baseball\analysis\results\json
+2026-03-07 16:26:47,258  INFO      __main__ -   Plots→ C:\Users\pmuin\Documents\fantasy-baseball\analysis\results\plots
+2026-03-07 16:26:47,258  INFO      __main__ - ============================================================
+2026-03-07 16:56:45,042  INFO      __main__ - Running with all active pairs: ['2022→2023', '2023→2024', '2024→2025']
+2026-03-07 16:56:45,042  INFO      __main__ - ============================================================
+2026-03-07 16:56:45,042  INFO      __main__ -   MLB Hitter Modeling Pipeline (year-over-year) — Starting
+2026-03-07 16:56:45,042  INFO      __main__ - ============================================================
+2026-03-07 16:56:45,042  INFO      __main__ - --skip-data: loading previously saved dataset…
+2026-03-07 16:56:45,042  INFO      dataset_builder - Loading dataset from parquet: C:\Users\pmuin\Documents\fantasy-baseball\analysis\data\processed\hitter_model_dataset.parquet
+2026-03-07 16:56:45,064  INFO      __main__ - Loaded saved dataset: 843 rows
+2026-03-07 16:56:45,064  INFO      __main__ - Modeling dataset: 843 player-season-pairs | 37 columns
+2026-03-07 16:56:45,064  INFO      __main__ - Training main models for targets: ['HR', 'R', 'RBI', 'SB', 'AVG']
+2026-03-07 16:56:45,064  INFO      modeling - --- Fitting models for target: next_HR ---
+2026-03-07 16:56:45,065  INFO      modeling - Target 'HR': 843 samples across 3 season groups | 23 features
+2026-03-07 16:56:45,066  INFO      modeling - [HR] Fitting ElasticNetCV...
+2026-03-07 16:56:45,066  INFO      modeling - CV: GroupKFold(3) — leave-one-season-out (groups: [2022, 2023, 2024])
+2026-03-07 16:56:46,820  INFO      modeling - [HR] ElasticNet CV-R2=0.453+/-0.034 | alpha=0.0706 | l1=0.10 | 23/23 features selected
+2026-03-07 16:56:46,820  INFO      modeling - [HR] Fitting RandomForest...
+2026-03-07 16:56:46,820  INFO      modeling - CV: GroupKFold(3) — leave-one-season-out (groups: [2022, 2023, 2024])
+2026-03-07 16:56:47,993  INFO      modeling - [HR] RF CV-R2=0.443+/-0.024
+2026-03-07 16:56:47,994  INFO      modeling - [HR] Fitting OLS on features: ['pa_predictor_season', 'barrel_pct', 'bb_pct', 'avg_exit_velocity', 'max_exit_velocity', 'age', 'k_pct', 'z_swing_pct']
+2026-03-07 16:56:47,996  INFO      modeling - [HR] OLS R²=0.464 | Adj-R²=0.458 | n=843
+2026-03-07 16:56:47,996  INFO      modeling - --- Fitting models for target: next_R ---
+2026-03-07 16:56:47,997  INFO      modeling - Target 'R': 843 samples across 3 season groups | 23 features
+2026-03-07 16:56:47,997  INFO      modeling - [R] Fitting ElasticNetCV...
+2026-03-07 16:56:47,997  INFO      modeling - CV: GroupKFold(3) — leave-one-season-out (groups: [2022, 2023, 2024])
+2026-03-07 16:56:49,449  INFO      modeling - [R] ElasticNet CV-R2=0.366+/-0.028 | alpha=0.4629 | l1=0.99 | 13/23 features selected
+2026-03-07 16:56:49,449  INFO      modeling - [R] Fitting RandomForest...
+2026-03-07 16:56:49,449  INFO      modeling - CV: GroupKFold(3) — leave-one-season-out (groups: [2022, 2023, 2024])
+2026-03-07 16:56:50,936  INFO      modeling - [R] RF CV-R2=0.344+/-0.018
+2026-03-07 16:56:50,936  INFO      modeling - [R] Fitting OLS on features: ['pa_predictor_season', 'age', 'k_pct', 'avg_exit_velocity', 'barrel_pct', 'bb_pct', 'max_exit_velocity', 'z_swing_pct']
+2026-03-07 16:56:50,938  INFO      modeling - [R] OLS R²=0.398 | Adj-R²=0.392 | n=843
+2026-03-07 16:56:50,938  INFO      modeling - --- Fitting models for target: next_RBI ---
+2026-03-07 16:56:50,939  INFO      modeling - Target 'RBI': 843 samples across 3 season groups | 23 features
+2026-03-07 16:56:50,939  INFO      modeling - [RBI] Fitting ElasticNetCV...
+2026-03-07 16:56:50,940  INFO      modeling - CV: GroupKFold(3) — leave-one-season-out (groups: [2022, 2023, 2024])
+2026-03-07 16:56:52,372  INFO      modeling - [RBI] ElasticNet CV-R2=0.370+/-0.036 | alpha=0.1392 | l1=0.50 | 18/23 features selected
+2026-03-07 16:56:52,372  INFO      modeling - [RBI] Fitting RandomForest...
+2026-03-07 16:56:52,372  INFO      modeling - CV: GroupKFold(3) — leave-one-season-out (groups: [2022, 2023, 2024])
+2026-03-07 16:56:53,788  INFO      modeling - [RBI] RF CV-R2=0.362+/-0.021
+2026-03-07 16:56:53,788  INFO      modeling - [RBI] Fitting OLS on features: ['pa_predictor_season', 'k_pct', 'age', 'barrel_pct', 'avg_exit_velocity', 'bb_pct', 'o_swing_pct', 'hard_hit_pct']
+2026-03-07 16:56:53,791  INFO      modeling - [RBI] OLS R²=0.397 | Adj-R²=0.391 | n=843
+2026-03-07 16:56:53,791  INFO      modeling - --- Fitting models for target: next_SB ---
+2026-03-07 16:56:53,792  INFO      modeling - Target 'SB': 843 samples across 3 season groups | 23 features
+2026-03-07 16:56:53,792  INFO      modeling - [SB] Fitting ElasticNetCV...
+2026-03-07 16:56:53,792  INFO      modeling - CV: GroupKFold(3) — leave-one-season-out (groups: [2022, 2023, 2024])
+2026-03-07 16:56:55,278  INFO      modeling - [SB] ElasticNet CV-R2=0.125+/-0.019 | alpha=0.1619 | l1=1.00 | 10/23 features selected
+2026-03-07 16:56:55,278  INFO      modeling - [SB] Fitting RandomForest...
+2026-03-07 16:56:55,278  INFO      modeling - CV: GroupKFold(3) — leave-one-season-out (groups: [2022, 2023, 2024])
+2026-03-07 16:56:56,818  INFO      modeling - [SB] RF CV-R2=0.127+/-0.026
+2026-03-07 16:56:56,818  INFO      modeling - [SB] Fitting OLS on features: ['age', 'pa_predictor_season', 'hard_hit_pct', 'max_exit_velocity', 'z_contact_pct', 'gb_pct', 'barrel_pct', 'bb_pct']
+2026-03-07 16:56:56,820  INFO      modeling - [SB] OLS R²=0.149 | Adj-R²=0.141 | n=843
+2026-03-07 16:56:56,820  INFO      modeling - --- Fitting models for target: next_AVG ---
+2026-03-07 16:56:56,821  INFO      modeling - Target 'AVG': 843 samples across 3 season groups | 23 features
+2026-03-07 16:56:56,822  INFO      modeling - [AVG] Fitting ElasticNetCV...
+2026-03-07 16:56:56,822  INFO      modeling - CV: GroupKFold(3) — leave-one-season-out (groups: [2022, 2023, 2024])
+2026-03-07 16:56:57,359  INFO      modeling - [AVG] ElasticNet CV-R2=0.252+/-0.010 | alpha=0.0033 | l1=0.10 | 15/23 features selected
+2026-03-07 16:56:57,359  INFO      modeling - [AVG] Fitting RandomForest...
+2026-03-07 16:56:57,359  INFO      modeling - CV: GroupKFold(3) — leave-one-season-out (groups: [2022, 2023, 2024])
+2026-03-07 16:56:57,859  INFO      modeling - [AVG] RF CV-R2=0.239+/-0.002
+2026-03-07 16:56:57,859  INFO      modeling - [AVG] Fitting OLS on features: ['k_pct', 'z_contact_pct', 'barrel_pct', 'avg_exit_velocity', 'z_swing_pct', 'age', 'pa_predictor_season', 'fb_pct']
+2026-03-07 16:56:57,862  INFO      modeling - [AVG] OLS R²=0.284 | Adj-R²=0.277 | n=843
+2026-03-07 16:56:57,862  INFO      modeling - === Modeling complete — 5 targets fitted ===
+2026-03-07 16:56:57,862  INFO      __main__ - Training rate-based skill models for targets: ['HR_rate', 'R_rate', 'RBI_rate', 'SB_rate']
+2026-03-07 16:56:57,862  INFO      modeling - --- Fitting rate model for target: next_HR_rate ---
+2026-03-07 16:56:57,862  ERROR     modeling - Skipping rate target 'HR_rate': "Target column 'next_HR_rate' not in dataset."
+2026-03-07 16:56:57,862  INFO      modeling - --- Fitting rate model for target: next_R_rate ---
+2026-03-07 16:56:57,862  ERROR     modeling - Skipping rate target 'R_rate': "Target column 'next_R_rate' not in dataset."
+2026-03-07 16:56:57,862  INFO      modeling - --- Fitting rate model for target: next_RBI_rate ---
+2026-03-07 16:56:57,862  ERROR     modeling - Skipping rate target 'RBI_rate': "Target column 'next_RBI_rate' not in dataset."
+2026-03-07 16:56:57,862  INFO      modeling - --- Fitting rate model for target: next_SB_rate ---
+2026-03-07 16:56:57,862  ERROR     modeling - Skipping rate target 'SB_rate': "Target column 'next_SB_rate' not in dataset."
+2026-03-07 16:56:57,862  INFO      modeling - === Rate modeling complete — 0 targets fitted ===
+2026-03-07 16:56:57,862  INFO      __main__ - Computing player skill scores (power / contact / speed)...
+2026-03-07 16:56:57,863  INFO      skill_scores - Skill score weights — power (HR_rate): {'barrel_pct': 0.2, 'avg_exit_velocity': 0.2, 'max_exit_velocity': 0.2, 'hard_hit_pct': 0.2, 'fb_pct': 0.2}
+2026-03-07 16:56:57,863  INFO      skill_scores - Skill score weights — contact (AVG):   {'k_pct': 0.008, 'z_contact_pct': 0.006, 'o_contact_pct': 0.003}
+2026-03-07 16:56:57,863  INFO      skill_scores - Skill score weights — speed (SB_rate): {'sprint_speed': 1.0}
+2026-03-07 16:56:57,873  INFO      skill_scores - Skill scores computed for 843 players (power mean=0.000, contact mean=0.000, speed mean=0.000)
+2026-03-07 16:56:57,878  INFO      reporting - Saving all results...
+2026-03-07 16:56:57,880  INFO      reporting - Saved model performance summary -> C:\Users\pmuin\Documents\fantasy-baseball\analysis\results\csv\model_performance_summary.csv
+2026-03-07 16:56:57,883  INFO      reporting - Saved ElasticNet features -> C:\Users\pmuin\Documents\fantasy-baseball\analysis\results\csv\elastic_net_features.csv
+2026-03-07 16:56:57,885  INFO      reporting - Saved RF importances -> C:\Users\pmuin\Documents\fantasy-baseball\analysis\results\csv\random_forest_importances.csv
+2026-03-07 16:56:57,887  INFO      reporting - Saved OLS coefficients → C:\Users\pmuin\Documents\fantasy-baseball\analysis\results\csv\ols_coefficients.csv
+2026-03-07 16:56:57,893  INFO      reporting - Saved target feature rankings → C:\Users\pmuin\Documents\fantasy-baseball\analysis\results\json\target_feature_rankings.json
+2026-03-07 16:56:57,895  INFO      reporting - Saved model summary JSON → C:\Users\pmuin\Documents\fantasy-baseball\analysis\results\json\model_summary.json
+2026-03-07 16:56:58,018  INFO      reporting - Saved player profiles JSON → C:\Users\pmuin\Documents\fantasy-baseball\analysis\results\json\player_profiles.json  (843 records)
+2026-03-07 16:56:58,022  INFO      reporting - Saved website feature drivers -> C:\Users\pmuin\Documents\fantasy-baseball\analysis\results\json\website_feature_drivers.json  (5 targets)
+2026-03-07 16:56:58,025  INFO      skill_scores - Saved player skill scores CSV -> C:\Users\pmuin\Documents\fantasy-baseball\analysis\results\csv\player_skill_scores.csv  (843 records)
+2026-03-07 16:56:58,040  INFO      skill_scores - Saved player skill scores JSON -> C:\Users\pmuin\Documents\fantasy-baseball\analysis\results\json\player_skill_scores.json
+2026-03-07 16:56:58,042  INFO      skill_scores - Saved breakout candidates -> C:\Users\pmuin\Documents\fantasy-baseball\analysis\results\csv\breakout_candidates.csv  (843 records)
+2026-03-07 16:56:58,200  INFO      reporting - Saved importance plot → C:\Users\pmuin\Documents\fantasy-baseball\analysis\results\plots\importance_HR.png
+2026-03-07 16:56:58,341  INFO      reporting - Saved importance plot → C:\Users\pmuin\Documents\fantasy-baseball\analysis\results\plots\importance_R.png
+2026-03-07 16:56:58,485  INFO      reporting - Saved importance plot → C:\Users\pmuin\Documents\fantasy-baseball\analysis\results\plots\importance_RBI.png
+2026-03-07 16:56:58,627  INFO      reporting - Saved importance plot → C:\Users\pmuin\Documents\fantasy-baseball\analysis\results\plots\importance_SB.png
+2026-03-07 16:56:58,775  INFO      reporting - Saved importance plot → C:\Users\pmuin\Documents\fantasy-baseball\analysis\results\plots\importance_AVG.png
+2026-03-07 16:56:58,775  INFO      reporting - All results saved.
+2026-03-07 16:56:58,775  INFO      reporting -   CSV  -> C:\Users\pmuin\Documents\fantasy-baseball\analysis\results\csv
+2026-03-07 16:56:58,775  INFO      reporting -   JSON -> C:\Users\pmuin\Documents\fantasy-baseball\analysis\results\json
+2026-03-07 16:56:58,775  INFO      reporting -   Plots-> C:\Users\pmuin\Documents\fantasy-baseball\analysis\results\plots
+2026-03-07 16:56:58,776  INFO      __main__ - ============================================================
+2026-03-07 16:56:58,776  INFO      __main__ -   PIPELINE SUMMARY
+2026-03-07 16:56:58,776  INFO      __main__ -   Total player-season rows : 843
+2026-03-07 16:56:58,776  INFO      __main__ -   Season pairs             : 3  (2022->2023, 2023->2024, 2024->2025)
+2026-03-07 16:56:58,776  INFO      __main__ -   Base predictors used     : 24
+2026-03-07 16:56:58,776  INFO      __main__ - 
+2026-03-07 16:56:58,776  INFO      __main__ -   MAIN MODEL CV-R2 (leave-one-season-out):
+2026-03-07 16:56:58,776  INFO      __main__ -     next_HR      ElasticNet=0.453   RF=0.443
+2026-03-07 16:56:58,776  INFO      __main__ -     next_R       ElasticNet=0.366   RF=0.344
+2026-03-07 16:56:58,776  INFO      __main__ -     next_RBI     ElasticNet=0.370   RF=0.362
+2026-03-07 16:56:58,776  INFO      __main__ -     next_SB      ElasticNet=0.125   RF=0.127
+2026-03-07 16:56:58,776  INFO      __main__ -     next_AVG     ElasticNet=0.252   RF=0.239
+2026-03-07 16:56:58,776  INFO      __main__ - 
+2026-03-07 16:56:58,776  INFO      __main__ -   RATE MODEL CV-R2 (leave-one-season-out):
+2026-03-07 16:56:58,776  INFO      __main__ - 
+2026-03-07 16:56:58,776  INFO      __main__ -   NEW OUTPUT FILES:
+2026-03-07 16:56:58,776  INFO      __main__ -     [MISSING]  rate_model_performance_summary.csv
+2026-03-07 16:56:58,776  INFO      __main__ -     [MISSING]  rate_random_forest_importances.csv
+2026-03-07 16:56:58,776  INFO      __main__ -     [MISSING]  rate_elastic_net_features.csv
+2026-03-07 16:56:58,776  INFO      __main__ -     [OK     ]  player_skill_scores.csv
+2026-03-07 16:56:58,776  INFO      __main__ -     [OK     ]  breakout_candidates.csv
+2026-03-07 16:56:58,776  INFO      __main__ -     [OK     ]  player_skill_scores.json
+2026-03-07 16:56:58,776  INFO      __main__ -     [OK     ]  website_feature_drivers.json
+2026-03-07 16:56:58,777  INFO      __main__ - 
+2026-03-07 16:56:58,777  INFO      __main__ -   Pipeline complete in 13.7 seconds
+2026-03-07 16:56:58,777  INFO      __main__ - ============================================================
+2026-03-07 16:57:13,424  INFO      __main__ - Running with all active pairs: ['2022→2023', '2023→2024', '2024→2025']
+2026-03-07 16:57:13,424  INFO      __main__ - ============================================================
+2026-03-07 16:57:13,424  INFO      __main__ -   MLB Hitter Modeling Pipeline (year-over-year) — Starting
+2026-03-07 16:57:13,424  INFO      __main__ - ============================================================
+2026-03-07 16:57:13,424  INFO      dataset_builder - Merging pair: predictor=2022 → target=2023
+2026-03-07 16:57:13,424  INFO      feature_builder - === Building predictor features | season=2022 ===
+2026-03-07 16:57:13,425  INFO      utils - Loading 'fg_batting_full_2022' from disk cache
+2026-03-07 16:57:13,454  INFO      utils - Loading 'statcast_ev_barrels_2022_50' from disk cache
+2026-03-07 16:57:13,456  INFO      utils - Loading 'sprint_speed_2022_10' from disk cache
+2026-03-07 16:57:13,457  INFO      utils - Loading 'chadwick_register' from disk cache
+2026-03-07 16:57:13,701  INFO      utils - MLBAM → FanGraphs ID map: 24696 entries
+2026-03-07 16:57:13,702  INFO      feature_builder - FG 2022: features found=22, absent (SC/SP will fill)=2: ['sweet_spot_pct', 'sprint_speed']
+2026-03-07 16:57:13,712  INFO      feature_builder - Extracted rows — FG: 693 | SC: 1 | Sprint: 1
+2026-03-07 16:57:13,727  WARNING   feature_builder - Dropping excluded outcome columns: ['HR', 'R', 'RBI', 'SB', 'AVG', 'OBP', 'SLG', 'OPS', 'ISO', 'BABIP', 'wOBA', 'wRAA', 'wRC', 'xBA', 'xSLG', 'xwOBA']
+2026-03-07 16:57:13,728  INFO      feature_builder - Predictor features done: season=2022 | 693 players | 24 features | 693 players have ≥1 NaN feature (will be imputed)
+2026-03-07 16:57:13,728  INFO      target_builder - === Building targets | target_season=2023 ===
+2026-03-07 16:57:13,728  INFO      utils - Loading 'fg_batting_full_2023' from disk cache
+2026-03-07 16:57:13,743  INFO      target_builder - Targets done: target_season=2023 | 656 players
+2026-03-07 16:57:13,743  INFO      dataset_builder - Pre-merge counts — features: 693 players | targets: 656 players
+2026-03-07 16:57:13,743  INFO      dataset_builder - fg_id dtype    — features: Int64 | targets: Int64
+2026-03-07 16:57:13,743  INFO      dataset_builder - fg_id non-null — features: 693 / 693 | targets: 656 / 656
+2026-03-07 16:57:13,744  INFO      dataset_builder - fg_id overlap before merge: 528 players (feat only: 165 | tgt only: 128)
+2026-03-07 16:57:13,746  INFO      dataset_builder - After merge: 528 player-season pairs (from 693 features, 656 targets)
+2026-03-07 16:57:13,746  INFO      dataset_builder - Predictor PA filter (≥ 250): 528 → 298 players
+2026-03-07 16:57:13,746  INFO      dataset_builder - Target PA filter (≥ 100): 298 → 274 players
+2026-03-07 16:57:13,747  INFO      dataset_builder - Merging pair: predictor=2023 → target=2024
+2026-03-07 16:57:13,747  INFO      feature_builder - === Building predictor features | season=2023 ===
+2026-03-07 16:57:13,747  INFO      utils - Loading 'fg_batting_full_2023' from disk cache
+2026-03-07 16:57:13,756  INFO      utils - Loading 'statcast_ev_barrels_2023_50' from disk cache
+2026-03-07 16:57:13,759  INFO      utils - Loading 'sprint_speed_2023_10' from disk cache
+2026-03-07 16:57:13,760  INFO      feature_builder - FG 2023: features found=22, absent (SC/SP will fill)=2: ['sweet_spot_pct', 'sprint_speed']
+2026-03-07 16:57:13,768  INFO      feature_builder - Extracted rows — FG: 655 | SC: 1 | Sprint: 1
+2026-03-07 16:57:13,782  WARNING   feature_builder - Dropping excluded outcome columns: ['HR', 'R', 'RBI', 'SB', 'AVG', 'OBP', 'SLG', 'OPS', 'ISO', 'BABIP', 'wOBA', 'wRAA', 'wRC', 'xBA', 'xSLG', 'xwOBA']
+2026-03-07 16:57:13,783  INFO      feature_builder - Predictor features done: season=2023 | 655 players | 24 features | 655 players have ≥1 NaN feature (will be imputed)
+2026-03-07 16:57:13,783  INFO      target_builder - === Building targets | target_season=2024 ===
+2026-03-07 16:57:13,784  INFO      utils - Loading 'fg_batting_full_2024' from disk cache
+2026-03-07 16:57:13,798  INFO      target_builder - Targets done: target_season=2024 | 651 players
+2026-03-07 16:57:13,798  INFO      dataset_builder - Pre-merge counts — features: 655 players | targets: 651 players
+2026-03-07 16:57:13,798  INFO      dataset_builder - fg_id dtype    — features: Int64 | targets: Int64
+2026-03-07 16:57:13,798  INFO      dataset_builder - fg_id non-null — features: 655 / 655 | targets: 651 / 651
+2026-03-07 16:57:13,799  INFO      dataset_builder - fg_id overlap before merge: 515 players (feat only: 140 | tgt only: 136)
+2026-03-07 16:57:13,800  INFO      dataset_builder - After merge: 515 player-season pairs (from 655 features, 651 targets)
+2026-03-07 16:57:13,801  INFO      dataset_builder - Predictor PA filter (≥ 250): 515 → 313 players
+2026-03-07 16:57:13,801  INFO      dataset_builder - Target PA filter (≥ 100): 313 → 285 players
+2026-03-07 16:57:13,801  INFO      dataset_builder - Merging pair: predictor=2024 → target=2025
+2026-03-07 16:57:13,801  INFO      feature_builder - === Building predictor features | season=2024 ===
+2026-03-07 16:57:13,802  INFO      utils - Loading 'fg_batting_full_2024' from disk cache
+2026-03-07 16:57:13,811  INFO      utils - Loading 'statcast_ev_barrels_2024_50' from disk cache
+2026-03-07 16:57:13,813  INFO      utils - Loading 'sprint_speed_2024_10' from disk cache
+2026-03-07 16:57:13,814  INFO      feature_builder - FG 2024: features found=22, absent (SC/SP will fill)=2: ['sweet_spot_pct', 'sprint_speed']
+2026-03-07 16:57:13,822  INFO      feature_builder - Extracted rows — FG: 651 | SC: 1 | Sprint: 1
+2026-03-07 16:57:13,836  WARNING   feature_builder - Dropping excluded outcome columns: ['HR', 'R', 'RBI', 'SB', 'AVG', 'OBP', 'SLG', 'OPS', 'ISO', 'BABIP', 'wOBA', 'wRAA', 'wRC', 'xBA', 'xSLG', 'xwOBA']
+2026-03-07 16:57:13,837  INFO      feature_builder - Predictor features done: season=2024 | 651 players | 24 features | 651 players have ≥1 NaN feature (will be imputed)
+2026-03-07 16:57:13,837  INFO      target_builder - === Building targets | target_season=2025 ===
+2026-03-07 16:57:13,838  INFO      utils - Loading 'fg_batting_full_2025' from disk cache
+2026-03-07 16:57:13,852  INFO      target_builder - Targets done: target_season=2025 | 673 players
+2026-03-07 16:57:13,852  INFO      dataset_builder - Pre-merge counts — features: 651 players | targets: 673 players
+2026-03-07 16:57:13,853  INFO      dataset_builder - fg_id dtype    — features: Int64 | targets: Int64
+2026-03-07 16:57:13,853  INFO      dataset_builder - fg_id non-null — features: 651 / 651 | targets: 673 / 673
+2026-03-07 16:57:13,853  INFO      dataset_builder - fg_id overlap before merge: 536 players (feat only: 115 | tgt only: 137)
+2026-03-07 16:57:13,855  INFO      dataset_builder - After merge: 536 player-season pairs (from 651 features, 673 targets)
+2026-03-07 16:57:13,855  INFO      dataset_builder - Predictor PA filter (≥ 250): 536 → 307 players
+2026-03-07 16:57:13,855  INFO      dataset_builder - Target PA filter (≥ 100): 307 → 284 players
+2026-03-07 16:57:13,856  INFO      dataset_builder - Combined dataset: 843 player-season-pairs across 3 season pairs
+2026-03-07 16:57:13,856  INFO      dataset_builder -   2022→2023: 274 rows
+2026-03-07 16:57:13,856  INFO      dataset_builder -   2023→2024: 285 rows
+2026-03-07 16:57:13,856  INFO      dataset_builder -   2024→2025: 284 rows
+2026-03-07 16:57:13,857  INFO      dataset_builder - Computed next_HR_rate: 843 non-null values (100.0%)
+2026-03-07 16:57:13,857  INFO      dataset_builder - Computed next_R_rate: 843 non-null values (100.0%)
+2026-03-07 16:57:13,857  INFO      dataset_builder - Computed next_RBI_rate: 843 non-null values (100.0%)
+2026-03-07 16:57:13,858  INFO      dataset_builder - Computed next_SB_rate: 843 non-null values (100.0%)
+2026-03-07 16:57:13,858  INFO      dataset_builder - Features with NaN values before imputation:
+sprint_speed      841
+sweet_spot_pct    840
+2026-03-07 16:57:13,861  INFO      dataset_builder - Imputation complete (strategy='median').
+2026-03-07 16:57:13,861  INFO      dataset_builder - Computed times_on_base_proxy: 843 non-null values
+2026-03-07 16:57:13,862  INFO      utils - Loading 'fg_batting_full_2022' from disk cache
+2026-03-07 16:57:13,872  INFO      dataset_builder - team_runs_scored for 2022: 247/274 players mapped
+2026-03-07 16:57:13,873  INFO      utils - Loading 'fg_batting_full_2023' from disk cache
+2026-03-07 16:57:13,883  INFO      dataset_builder - team_runs_scored for 2023: 267/285 players mapped
+2026-03-07 16:57:13,884  INFO      utils - Loading 'fg_batting_full_2024' from disk cache
+2026-03-07 16:57:13,894  INFO      dataset_builder - team_runs_scored for 2024: 258/284 players mapped
+2026-03-07 16:57:13,895  INFO      dataset_builder - Imputed SB extra predictors: ['times_on_base_proxy', 'team_runs_scored']
+2026-03-07 16:57:13,910  INFO      dataset_builder - Saved → C:\Users\pmuin\Documents\fantasy-baseball\analysis\results\csv\hitter_model_dataset.csv  (843 rows)
+2026-03-07 16:57:13,910  INFO      dataset_builder - Saved → C:\Users\pmuin\Documents\fantasy-baseball\analysis\data\processed\hitter_model_dataset.parquet
+2026-03-07 16:57:13,910  INFO      __main__ - Modeling dataset: 843 player-season-pairs | 43 columns
+2026-03-07 16:57:13,911  INFO      __main__ - Training main models for targets: ['HR', 'R', 'RBI', 'SB', 'AVG']
+2026-03-07 16:57:13,911  INFO      modeling - --- Fitting models for target: next_HR ---
+2026-03-07 16:57:13,912  INFO      modeling - Target 'HR': 843 samples across 3 season groups | 23 features
+2026-03-07 16:57:13,912  INFO      modeling - [HR] Fitting ElasticNetCV...
+2026-03-07 16:57:13,912  INFO      modeling - CV: GroupKFold(3) — leave-one-season-out (groups: [2022, 2023, 2024])
+2026-03-07 16:57:15,653  INFO      modeling - [HR] ElasticNet CV-R2=0.453+/-0.034 | alpha=0.0706 | l1=0.10 | 23/23 features selected
+2026-03-07 16:57:15,653  INFO      modeling - [HR] Fitting RandomForest...
+2026-03-07 16:57:15,653  INFO      modeling - CV: GroupKFold(3) — leave-one-season-out (groups: [2022, 2023, 2024])
+2026-03-07 16:57:16,870  INFO      modeling - [HR] RF CV-R2=0.443+/-0.024
+2026-03-07 16:57:16,870  INFO      modeling - [HR] Fitting OLS on features: ['pa_predictor_season', 'barrel_pct', 'bb_pct', 'avg_exit_velocity', 'max_exit_velocity', 'age', 'k_pct', 'z_swing_pct']
+2026-03-07 16:57:16,873  INFO      modeling - [HR] OLS R²=0.464 | Adj-R²=0.458 | n=843
+2026-03-07 16:57:16,873  INFO      modeling - --- Fitting models for target: next_R ---
+2026-03-07 16:57:16,875  INFO      modeling - Target 'R': 843 samples across 3 season groups | 23 features
+2026-03-07 16:57:16,875  INFO      modeling - [R] Fitting ElasticNetCV...
+2026-03-07 16:57:16,875  INFO      modeling - CV: GroupKFold(3) — leave-one-season-out (groups: [2022, 2023, 2024])
+2026-03-07 16:57:18,267  INFO      modeling - [R] ElasticNet CV-R2=0.366+/-0.028 | alpha=0.4629 | l1=0.99 | 13/23 features selected
+2026-03-07 16:57:18,267  INFO      modeling - [R] Fitting RandomForest...
+2026-03-07 16:57:18,267  INFO      modeling - CV: GroupKFold(3) — leave-one-season-out (groups: [2022, 2023, 2024])
+2026-03-07 16:57:19,661  INFO      modeling - [R] RF CV-R2=0.344+/-0.018
+2026-03-07 16:57:19,661  INFO      modeling - [R] Fitting OLS on features: ['pa_predictor_season', 'age', 'k_pct', 'avg_exit_velocity', 'barrel_pct', 'bb_pct', 'max_exit_velocity', 'z_swing_pct']
+2026-03-07 16:57:19,663  INFO      modeling - [R] OLS R²=0.398 | Adj-R²=0.392 | n=843
+2026-03-07 16:57:19,663  INFO      modeling - --- Fitting models for target: next_RBI ---
+2026-03-07 16:57:19,664  INFO      modeling - Target 'RBI': 843 samples across 3 season groups | 23 features
+2026-03-07 16:57:19,664  INFO      modeling - [RBI] Fitting ElasticNetCV...
+2026-03-07 16:57:19,665  INFO      modeling - CV: GroupKFold(3) — leave-one-season-out (groups: [2022, 2023, 2024])
+2026-03-07 16:57:21,075  INFO      modeling - [RBI] ElasticNet CV-R2=0.370+/-0.036 | alpha=0.1392 | l1=0.50 | 18/23 features selected
+2026-03-07 16:57:21,075  INFO      modeling - [RBI] Fitting RandomForest...
+2026-03-07 16:57:21,075  INFO      modeling - CV: GroupKFold(3) — leave-one-season-out (groups: [2022, 2023, 2024])
+2026-03-07 16:57:22,460  INFO      modeling - [RBI] RF CV-R2=0.362+/-0.021
+2026-03-07 16:57:22,460  INFO      modeling - [RBI] Fitting OLS on features: ['pa_predictor_season', 'k_pct', 'age', 'barrel_pct', 'avg_exit_velocity', 'bb_pct', 'o_swing_pct', 'hard_hit_pct']
+2026-03-07 16:57:22,462  INFO      modeling - [RBI] OLS R²=0.397 | Adj-R²=0.391 | n=843
+2026-03-07 16:57:22,462  INFO      modeling - --- Fitting models for target: next_SB ---
+2026-03-07 16:57:22,464  INFO      modeling - Target 'SB': 843 samples across 3 season groups | 25 features
+2026-03-07 16:57:22,464  INFO      modeling - [SB] Fitting ElasticNetCV...
+2026-03-07 16:57:22,464  INFO      modeling - CV: GroupKFold(3) — leave-one-season-out (groups: [2022, 2023, 2024])
+2026-03-07 16:57:23,928  INFO      modeling - [SB] ElasticNet CV-R2=0.125+/-0.019 | alpha=0.1861 | l1=1.00 | 8/25 features selected
+2026-03-07 16:57:23,928  INFO      modeling - [SB] Fitting RandomForest...
+2026-03-07 16:57:23,929  INFO      modeling - CV: GroupKFold(3) — leave-one-season-out (groups: [2022, 2023, 2024])
+2026-03-07 16:57:25,355  INFO      modeling - [SB] RF CV-R2=0.126+/-0.025
+2026-03-07 16:57:25,355  INFO      modeling - [SB] Fitting OLS on features: ['age', 'pa_predictor_season', 'hard_hit_pct', 'max_exit_velocity', 'gb_pct', 'z_contact_pct', 'barrel_pct', 'bb_pct']
+2026-03-07 16:57:25,357  INFO      modeling - [SB] OLS R²=0.149 | Adj-R²=0.141 | n=843
+2026-03-07 16:57:25,357  INFO      modeling - --- Fitting models for target: next_AVG ---
+2026-03-07 16:57:25,358  INFO      modeling - Target 'AVG': 843 samples across 3 season groups | 23 features
+2026-03-07 16:57:25,359  INFO      modeling - [AVG] Fitting ElasticNetCV...
+2026-03-07 16:57:25,359  INFO      modeling - CV: GroupKFold(3) — leave-one-season-out (groups: [2022, 2023, 2024])
+2026-03-07 16:57:25,875  INFO      modeling - [AVG] ElasticNet CV-R2=0.252+/-0.010 | alpha=0.0033 | l1=0.10 | 15/23 features selected
+2026-03-07 16:57:25,875  INFO      modeling - [AVG] Fitting RandomForest...
+2026-03-07 16:57:25,875  INFO      modeling - CV: GroupKFold(3) — leave-one-season-out (groups: [2022, 2023, 2024])
+2026-03-07 16:57:26,363  INFO      modeling - [AVG] RF CV-R2=0.239+/-0.002
+2026-03-07 16:57:26,363  INFO      modeling - [AVG] Fitting OLS on features: ['k_pct', 'z_contact_pct', 'barrel_pct', 'avg_exit_velocity', 'z_swing_pct', 'age', 'pa_predictor_season', 'fb_pct']
+2026-03-07 16:57:26,366  INFO      modeling - [AVG] OLS R²=0.284 | Adj-R²=0.277 | n=843
+2026-03-07 16:57:26,366  INFO      modeling - === Modeling complete — 5 targets fitted ===
+2026-03-07 16:57:26,366  INFO      __main__ - Training rate-based skill models for targets: ['HR_rate', 'R_rate', 'RBI_rate', 'SB_rate']
+2026-03-07 16:57:26,366  INFO      modeling - --- Fitting rate model for target: next_HR_rate ---
+2026-03-07 16:57:26,367  INFO      modeling - Target 'HR_rate': 843 samples across 3 season groups | 23 features
+2026-03-07 16:57:26,367  INFO      modeling - [HR_rate] Fitting ElasticNetCV...
+2026-03-07 16:57:26,367  INFO      modeling - CV: GroupKFold(3) — leave-one-season-out (groups: [2022, 2023, 2024])
+2026-03-07 16:57:26,876  INFO      modeling - [HR_rate] ElasticNet CV-R2=0.447+/-0.041 | alpha=0.0011 | l1=0.10 | 16/23 features selected
+2026-03-07 16:57:26,876  INFO      modeling - [HR_rate] Fitting RandomForest...
+2026-03-07 16:57:26,876  INFO      modeling - CV: GroupKFold(3) — leave-one-season-out (groups: [2022, 2023, 2024])
+2026-03-07 16:57:27,353  INFO      modeling - [HR_rate] RF CV-R2=0.424+/-0.025
+2026-03-07 16:57:27,353  INFO      modeling - [HR_rate] Fitting OLS on features: ['barrel_pct', 'launch_angle_avg', 'bb_pct', 'max_exit_velocity', 'pull_pct', 'avg_exit_velocity', 'pa_predictor_season', 'o_swing_pct']
+2026-03-07 16:57:27,356  INFO      modeling - [HR_rate] OLS R2=0.479 | Adj-R2=0.474 | n=843
+2026-03-07 16:57:27,356  INFO      modeling - --- Fitting rate model for target: next_R_rate ---
+2026-03-07 16:57:27,357  INFO      modeling - Target 'R_rate': 843 samples across 3 season groups | 23 features
+2026-03-07 16:57:27,357  INFO      modeling - [R_rate] Fitting ElasticNetCV...
+2026-03-07 16:57:27,357  INFO      modeling - CV: GroupKFold(3) — leave-one-season-out (groups: [2022, 2023, 2024])
+2026-03-07 16:57:27,908  INFO      modeling - [R_rate] ElasticNet CV-R2=0.157+/-0.022 | alpha=0.0025 | l1=0.10 | 14/23 features selected
+2026-03-07 16:57:27,908  INFO      modeling - [R_rate] Fitting RandomForest...
+2026-03-07 16:57:27,908  INFO      modeling - CV: GroupKFold(3) — leave-one-season-out (groups: [2022, 2023, 2024])
+2026-03-07 16:57:28,398  INFO      modeling - [R_rate] RF CV-R2=0.151+/-0.016
+2026-03-07 16:57:28,398  INFO      modeling - [R_rate] Fitting OLS on features: ['pa_predictor_season', 'age', 'barrel_pct', 'k_pct', 'max_exit_velocity', 'z_swing_pct', 'bb_pct', 'launch_angle_avg']
+2026-03-07 16:57:28,400  INFO      modeling - [R_rate] OLS R2=0.206 | Adj-R2=0.198 | n=843
+2026-03-07 16:57:28,400  INFO      modeling - --- Fitting rate model for target: next_RBI_rate ---
+2026-03-07 16:57:28,402  INFO      modeling - Target 'RBI_rate': 843 samples across 3 season groups | 23 features
+2026-03-07 16:57:28,402  INFO      modeling - [RBI_rate] Fitting ElasticNetCV...
+2026-03-07 16:57:28,402  INFO      modeling - CV: GroupKFold(3) — leave-one-season-out (groups: [2022, 2023, 2024])
+2026-03-07 16:57:28,935  INFO      modeling - [RBI_rate] ElasticNet CV-R2=0.200+/-0.058 | alpha=0.0036 | l1=0.10 | 16/23 features selected
+2026-03-07 16:57:28,935  INFO      modeling - [RBI_rate] Fitting RandomForest...
+2026-03-07 16:57:28,935  INFO      modeling - CV: GroupKFold(3) — leave-one-season-out (groups: [2022, 2023, 2024])
+2026-03-07 16:57:29,451  INFO      modeling - [RBI_rate] RF CV-R2=0.190+/-0.038
+2026-03-07 16:57:29,451  INFO      modeling - [RBI_rate] Fitting OLS on features: ['o_swing_pct', 'barrel_pct', 'fb_pct', 'avg_exit_velocity', 'bb_pct', 'k_pct', 'hard_hit_pct', 'max_exit_velocity']
+2026-03-07 16:57:29,454  INFO      modeling - [RBI_rate] OLS R2=0.246 | Adj-R2=0.239 | n=843
+2026-03-07 16:57:29,454  INFO      modeling - --- Fitting rate model for target: next_SB_rate ---
+2026-03-07 16:57:29,455  INFO      modeling - Target 'SB_rate': 843 samples across 3 season groups | 25 features
+2026-03-07 16:57:29,455  INFO      modeling - [SB_rate] Fitting ElasticNetCV...
+2026-03-07 16:57:29,455  INFO      modeling - CV: GroupKFold(3) — leave-one-season-out (groups: [2022, 2023, 2024])
+2026-03-07 16:57:30,008  INFO      modeling - [SB_rate] ElasticNet CV-R2=0.098+/-0.034 | alpha=0.0021 | l1=0.10 | 14/25 features selected
+2026-03-07 16:57:30,008  INFO      modeling - [SB_rate] Fitting RandomForest...
+2026-03-07 16:57:30,008  INFO      modeling - CV: GroupKFold(3) — leave-one-season-out (groups: [2022, 2023, 2024])
+2026-03-07 16:57:30,514  INFO      modeling - [SB_rate] RF CV-R2=0.119+/-0.008
+2026-03-07 16:57:30,514  INFO      modeling - [SB_rate] Fitting OLS on features: ['age', 'hard_hit_pct', 'pa_predictor_season', 'max_exit_velocity', 'o_contact_pct', 'barrel_pct', 'z_contact_pct', 'launch_angle_avg']
+2026-03-07 16:57:30,517  INFO      modeling - [SB_rate] OLS R2=0.126 | Adj-R2=0.118 | n=843
+2026-03-07 16:57:30,517  INFO      modeling - === Rate modeling complete — 4 targets fitted ===
+2026-03-07 16:57:30,517  INFO      __main__ - Computing player skill scores (power / contact / speed)...
+2026-03-07 16:57:30,518  INFO      skill_scores - Skill score weights — power (HR_rate): {'barrel_pct': 0.005, 'max_exit_velocity': 0.002, 'avg_exit_velocity': 0.001, 'hard_hit_pct': 0.001, 'fb_pct': 0.0}
+2026-03-07 16:57:30,518  INFO      skill_scores - Skill score weights — contact (AVG):   {'k_pct': 0.008, 'z_contact_pct': 0.006, 'o_contact_pct': 0.003}
+2026-03-07 16:57:30,518  INFO      skill_scores - Skill score weights — speed (SB_rate): {'sprint_speed': 1.0}
+2026-03-07 16:57:30,527  INFO      skill_scores - Skill scores computed for 843 players (power mean=0.000, contact mean=0.000, speed mean=0.000)
+2026-03-07 16:57:30,532  INFO      reporting - Saving all results...
+2026-03-07 16:57:30,534  INFO      reporting - Saved model performance summary -> C:\Users\pmuin\Documents\fantasy-baseball\analysis\results\csv\model_performance_summary.csv
+2026-03-07 16:57:30,536  INFO      reporting - Saved ElasticNet features -> C:\Users\pmuin\Documents\fantasy-baseball\analysis\results\csv\elastic_net_features.csv
+2026-03-07 16:57:30,539  INFO      reporting - Saved RF importances -> C:\Users\pmuin\Documents\fantasy-baseball\analysis\results\csv\random_forest_importances.csv
+2026-03-07 16:57:30,541  INFO      reporting - Saved OLS coefficients → C:\Users\pmuin\Documents\fantasy-baseball\analysis\results\csv\ols_coefficients.csv
+2026-03-07 16:57:30,547  INFO      reporting - Saved target feature rankings → C:\Users\pmuin\Documents\fantasy-baseball\analysis\results\json\target_feature_rankings.json
+2026-03-07 16:57:30,548  INFO      reporting - Saved model summary JSON → C:\Users\pmuin\Documents\fantasy-baseball\analysis\results\json\model_summary.json
+2026-03-07 16:57:30,652  INFO      reporting - Saved player profiles JSON → C:\Users\pmuin\Documents\fantasy-baseball\analysis\results\json\player_profiles.json  (843 records)
+2026-03-07 16:57:30,653  INFO      reporting - Saved model performance summary -> C:\Users\pmuin\Documents\fantasy-baseball\analysis\results\csv\rate_model_performance_summary.csv
+2026-03-07 16:57:30,655  INFO      reporting - Saved ElasticNet features -> C:\Users\pmuin\Documents\fantasy-baseball\analysis\results\csv\rate_elastic_net_features.csv
+2026-03-07 16:57:30,657  INFO      reporting - Saved RF importances -> C:\Users\pmuin\Documents\fantasy-baseball\analysis\results\csv\rate_random_forest_importances.csv
+2026-03-07 16:57:30,663  INFO      reporting - Saved website feature drivers -> C:\Users\pmuin\Documents\fantasy-baseball\analysis\results\json\website_feature_drivers.json  (9 targets)
+2026-03-07 16:57:30,665  INFO      skill_scores - Saved player skill scores CSV -> C:\Users\pmuin\Documents\fantasy-baseball\analysis\results\csv\player_skill_scores.csv  (843 records)
+2026-03-07 16:57:30,677  INFO      skill_scores - Saved player skill scores JSON -> C:\Users\pmuin\Documents\fantasy-baseball\analysis\results\json\player_skill_scores.json
+2026-03-07 16:57:30,679  INFO      skill_scores - Saved breakout candidates -> C:\Users\pmuin\Documents\fantasy-baseball\analysis\results\csv\breakout_candidates.csv  (843 records)
+2026-03-07 16:57:30,837  INFO      reporting - Saved importance plot → C:\Users\pmuin\Documents\fantasy-baseball\analysis\results\plots\importance_HR.png
+2026-03-07 16:57:30,977  INFO      reporting - Saved importance plot → C:\Users\pmuin\Documents\fantasy-baseball\analysis\results\plots\importance_R.png
+2026-03-07 16:57:31,114  INFO      reporting - Saved importance plot → C:\Users\pmuin\Documents\fantasy-baseball\analysis\results\plots\importance_RBI.png
+2026-03-07 16:57:31,280  INFO      reporting - Saved importance plot → C:\Users\pmuin\Documents\fantasy-baseball\analysis\results\plots\importance_SB.png
+2026-03-07 16:57:31,426  INFO      reporting - Saved importance plot → C:\Users\pmuin\Documents\fantasy-baseball\analysis\results\plots\importance_AVG.png
+2026-03-07 16:57:31,426  INFO      reporting - All results saved.
+2026-03-07 16:57:31,426  INFO      reporting -   CSV  -> C:\Users\pmuin\Documents\fantasy-baseball\analysis\results\csv
+2026-03-07 16:57:31,426  INFO      reporting -   JSON -> C:\Users\pmuin\Documents\fantasy-baseball\analysis\results\json
+2026-03-07 16:57:31,426  INFO      reporting -   Plots-> C:\Users\pmuin\Documents\fantasy-baseball\analysis\results\plots
+2026-03-07 16:57:31,426  INFO      __main__ - ============================================================
+2026-03-07 16:57:31,427  INFO      __main__ -   PIPELINE SUMMARY
+2026-03-07 16:57:31,427  INFO      __main__ -   Total player-season rows : 843
+2026-03-07 16:57:31,427  INFO      __main__ -   Season pairs             : 3  (2022->2023, 2023->2024, 2024->2025)
+2026-03-07 16:57:31,427  INFO      __main__ -   Base predictors used     : 24
+2026-03-07 16:57:31,427  INFO      __main__ - 
+2026-03-07 16:57:31,427  INFO      __main__ -   MAIN MODEL CV-R2 (leave-one-season-out):
+2026-03-07 16:57:31,427  INFO      __main__ -     next_HR      ElasticNet=0.453   RF=0.443
+2026-03-07 16:57:31,427  INFO      __main__ -     next_R       ElasticNet=0.366   RF=0.344
+2026-03-07 16:57:31,427  INFO      __main__ -     next_RBI     ElasticNet=0.370   RF=0.362
+2026-03-07 16:57:31,427  INFO      __main__ -     next_SB      ElasticNet=0.125   RF=0.126
+2026-03-07 16:57:31,427  INFO      __main__ -     next_AVG     ElasticNet=0.252   RF=0.239
+2026-03-07 16:57:31,427  INFO      __main__ - 
+2026-03-07 16:57:31,427  INFO      __main__ -   RATE MODEL CV-R2 (leave-one-season-out):
+2026-03-07 16:57:31,427  INFO      __main__ -     next_HR_rate     ElasticNet=0.447   RF=0.424
+2026-03-07 16:57:31,427  INFO      __main__ -     next_R_rate      ElasticNet=0.157   RF=0.151
+2026-03-07 16:57:31,427  INFO      __main__ -     next_RBI_rate    ElasticNet=0.200   RF=0.190
+2026-03-07 16:57:31,427  INFO      __main__ -     next_SB_rate     ElasticNet=0.098   RF=0.119
+2026-03-07 16:57:31,427  INFO      __main__ - 
+2026-03-07 16:57:31,427  INFO      __main__ -   NEW OUTPUT FILES:
+2026-03-07 16:57:31,427  INFO      __main__ -     [OK     ]  rate_model_performance_summary.csv
+2026-03-07 16:57:31,427  INFO      __main__ -     [OK     ]  rate_random_forest_importances.csv
+2026-03-07 16:57:31,427  INFO      __main__ -     [OK     ]  rate_elastic_net_features.csv
+2026-03-07 16:57:31,427  INFO      __main__ -     [OK     ]  player_skill_scores.csv
+2026-03-07 16:57:31,427  INFO      __main__ -     [OK     ]  breakout_candidates.csv
+2026-03-07 16:57:31,427  INFO      __main__ -     [OK     ]  player_skill_scores.json
+2026-03-07 16:57:31,427  INFO      __main__ -     [OK     ]  website_feature_drivers.json
+2026-03-07 16:57:31,427  INFO      __main__ - 
+2026-03-07 16:57:31,427  INFO      __main__ -   Pipeline complete in 18.0 seconds
+2026-03-07 16:57:31,427  INFO      __main__ - ============================================================

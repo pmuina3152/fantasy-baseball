@@ -1,0 +1,560 @@
+{
+  "HR": {
+    "top_predictors": [
+      {
+        "stat": "pa_predictor_season",
+        "label": "Plate Appearances",
+        "importance": 0.1511,
+        "enet_coeff": 2.7742,
+        "direction": "positive"
+      },
+      {
+        "stat": "barrel_pct",
+        "label": "Barrel Rate",
+        "importance": 0.1408,
+        "enet_coeff": 2.1843,
+        "direction": "positive"
+      },
+      {
+        "stat": "avg_exit_velocity",
+        "label": "Avg Exit Velocity",
+        "importance": 0.1052,
+        "enet_coeff": 1.1384,
+        "direction": "positive"
+      },
+      {
+        "stat": "hard_hit_pct",
+        "label": "Hard Hit Rate",
+        "importance": 0.0954,
+        "enet_coeff": 0.7045,
+        "direction": "positive"
+      },
+      {
+        "stat": "max_exit_velocity",
+        "label": "Max Exit Velocity",
+        "importance": 0.0953,
+        "enet_coeff": 1.1323,
+        "direction": "positive"
+      },
+      {
+        "stat": "fb_pct",
+        "label": "Fly Ball Rate",
+        "importance": 0.043,
+        "enet_coeff": 0.4156,
+        "direction": "positive"
+      },
+      {
+        "stat": "bb_pct",
+        "label": "Walk Rate (BB%)",
+        "importance": 0.0381,
+        "enet_coeff": 1.4408,
+        "direction": "positive"
+      },
+      {
+        "stat": "gb_pct",
+        "label": "Ground Ball Rate",
+        "importance": 0.0335,
+        "enet_coeff": -0.3048,
+        "direction": "negative"
+      }
+    ],
+    "model_cv_r2": 0.4426,
+    "model_type": "count"
+  },
+  "R": {
+    "top_predictors": [
+      {
+        "stat": "pa_predictor_season",
+        "label": "Plate Appearances",
+        "importance": 0.2643,
+        "enet_coeff": 11.3781,
+        "direction": "positive"
+      },
+      {
+        "stat": "max_exit_velocity",
+        "label": "Max Exit Velocity",
+        "importance": 0.0714,
+        "enet_coeff": 1.5538,
+        "direction": "positive"
+      },
+      {
+        "stat": "avg_exit_velocity",
+        "label": "Avg Exit Velocity",
+        "importance": 0.0671,
+        "enet_coeff": 2.7955,
+        "direction": "positive"
+      },
+      {
+        "stat": "hard_hit_pct",
+        "label": "Hard Hit Rate",
+        "importance": 0.063,
+        "enet_coeff": 0.0,
+        "direction": "positive"
+      },
+      {
+        "stat": "barrel_pct",
+        "label": "Barrel Rate",
+        "importance": 0.0516,
+        "enet_coeff": 2.791,
+        "direction": "positive"
+      },
+      {
+        "stat": "k_pct",
+        "label": "Strikeout Rate (K%)",
+        "importance": 0.0436,
+        "enet_coeff": -4.3672,
+        "direction": "negative"
+      },
+      {
+        "stat": "age",
+        "label": "Age",
+        "importance": 0.0374,
+        "enet_coeff": -4.9421,
+        "direction": "negative"
+      },
+      {
+        "stat": "bb_pct",
+        "label": "Walk Rate (BB%)",
+        "importance": 0.0352,
+        "enet_coeff": 1.9228,
+        "direction": "positive"
+      }
+    ],
+    "model_cv_r2": 0.3444,
+    "model_type": "count"
+  },
+  "RBI": {
+    "top_predictors": [
+      {
+        "stat": "pa_predictor_season",
+        "label": "Plate Appearances",
+        "importance": 0.2294,
+        "enet_coeff": 8.9661,
+        "direction": "positive"
+      },
+      {
+        "stat": "avg_exit_velocity",
+        "label": "Avg Exit Velocity",
+        "importance": 0.09,
+        "enet_coeff": 3.2844,
+        "direction": "positive"
+      },
+      {
+        "stat": "hard_hit_pct",
+        "label": "Hard Hit Rate",
+        "importance": 0.0756,
+        "enet_coeff": 2.2943,
+        "direction": "positive"
+      },
+      {
+        "stat": "max_exit_velocity",
+        "label": "Max Exit Velocity",
+        "importance": 0.0755,
+        "enet_coeff": 1.9876,
+        "direction": "positive"
+      },
+      {
+        "stat": "barrel_pct",
+        "label": "Barrel Rate",
+        "importance": 0.0703,
+        "enet_coeff": 3.4105,
+        "direction": "positive"
+      },
+      {
+        "stat": "k_pct",
+        "label": "Strikeout Rate (K%)",
+        "importance": 0.0382,
+        "enet_coeff": -3.5478,
+        "direction": "negative"
+      },
+      {
+        "stat": "bb_pct",
+        "label": "Walk Rate (BB%)",
+        "importance": 0.0348,
+        "enet_coeff": 2.7829,
+        "direction": "positive"
+      },
+      {
+        "stat": "o_contact_pct",
+        "label": "Outside Contact Rate",
+        "importance": 0.0328,
+        "enet_coeff": 1.7549,
+        "direction": "positive"
+      }
+    ],
+    "model_cv_r2": 0.3622,
+    "model_type": "count"
+  },
+  "SB": {
+    "top_predictors": [
+      {
+        "stat": "age",
+        "label": "Age",
+        "importance": 0.1222,
+        "enet_coeff": -2.568,
+        "direction": "negative"
+      },
+      {
+        "stat": "pa_predictor_season",
+        "label": "Plate Appearances",
+        "importance": 0.086,
+        "enet_coeff": 2.1741,
+        "direction": "positive"
+      },
+      {
+        "stat": "times_on_base_proxy",
+        "label": "Times on Base (proxy)",
+        "importance": 0.0604,
+        "enet_coeff": 0.0,
+        "direction": "positive"
+      },
+      {
+        "stat": "max_exit_velocity",
+        "label": "Max Exit Velocity",
+        "importance": 0.0542,
+        "enet_coeff": 0.5619,
+        "direction": "positive"
+      },
+      {
+        "stat": "hard_hit_pct",
+        "label": "Hard Hit Rate",
+        "importance": 0.0529,
+        "enet_coeff": -1.2773,
+        "direction": "negative"
+      },
+      {
+        "stat": "avg_exit_velocity",
+        "label": "Avg Exit Velocity",
+        "importance": 0.0502,
+        "enet_coeff": -0.0,
+        "direction": "positive"
+      },
+      {
+        "stat": "pull_pct",
+        "label": "Pull Rate",
+        "importance": 0.0364,
+        "enet_coeff": 0.0,
+        "direction": "positive"
+      },
+      {
+        "stat": "barrel_pct",
+        "label": "Barrel Rate",
+        "importance": 0.0363,
+        "enet_coeff": -0.0678,
+        "direction": "negative"
+      }
+    ],
+    "model_cv_r2": 0.1258,
+    "model_type": "count"
+  },
+  "AVG": {
+    "top_predictors": [
+      {
+        "stat": "k_pct",
+        "label": "Strikeout Rate (K%)",
+        "importance": 0.1097,
+        "enet_coeff": -0.0084,
+        "direction": "negative"
+      },
+      {
+        "stat": "pa_predictor_season",
+        "label": "Plate Appearances",
+        "importance": 0.0761,
+        "enet_coeff": 0.0031,
+        "direction": "positive"
+      },
+      {
+        "stat": "z_contact_pct",
+        "label": "Zone Contact Rate",
+        "importance": 0.0662,
+        "enet_coeff": 0.0061,
+        "direction": "positive"
+      },
+      {
+        "stat": "avg_exit_velocity",
+        "label": "Avg Exit Velocity",
+        "importance": 0.0586,
+        "enet_coeff": 0.0052,
+        "direction": "positive"
+      },
+      {
+        "stat": "o_contact_pct",
+        "label": "Outside Contact Rate",
+        "importance": 0.0572,
+        "enet_coeff": 0.0028,
+        "direction": "positive"
+      },
+      {
+        "stat": "hard_hit_pct",
+        "label": "Hard Hit Rate",
+        "importance": 0.0537,
+        "enet_coeff": 0.0,
+        "direction": "positive"
+      },
+      {
+        "stat": "contact_pct",
+        "label": "Overall Contact Rate",
+        "importance": 0.0505,
+        "enet_coeff": 0.0,
+        "direction": "positive"
+      },
+      {
+        "stat": "max_exit_velocity",
+        "label": "Max Exit Velocity",
+        "importance": 0.0474,
+        "enet_coeff": 0.0011,
+        "direction": "positive"
+      }
+    ],
+    "model_cv_r2": 0.2388,
+    "model_type": "count"
+  },
+  "HR_rate": {
+    "top_predictors": [
+      {
+        "stat": "barrel_pct",
+        "label": "Barrel Rate",
+        "importance": 0.1741,
+        "enet_coeff": 0.0046,
+        "direction": "positive"
+      },
+      {
+        "stat": "hard_hit_pct",
+        "label": "Hard Hit Rate",
+        "importance": 0.1022,
+        "enet_coeff": 0.0008,
+        "direction": "positive"
+      },
+      {
+        "stat": "avg_exit_velocity",
+        "label": "Avg Exit Velocity",
+        "importance": 0.0982,
+        "enet_coeff": 0.0014,
+        "direction": "positive"
+      },
+      {
+        "stat": "max_exit_velocity",
+        "label": "Max Exit Velocity",
+        "importance": 0.0923,
+        "enet_coeff": 0.0019,
+        "direction": "positive"
+      },
+      {
+        "stat": "fb_pct",
+        "label": "Fly Ball Rate",
+        "importance": 0.0671,
+        "enet_coeff": 0.0005,
+        "direction": "positive"
+      },
+      {
+        "stat": "launch_angle_avg",
+        "label": "Avg Launch Angle",
+        "importance": 0.0431,
+        "enet_coeff": 0.0021,
+        "direction": "positive"
+      },
+      {
+        "stat": "pull_pct",
+        "label": "Pull Rate",
+        "importance": 0.0421,
+        "enet_coeff": 0.0018,
+        "direction": "positive"
+      },
+      {
+        "stat": "gb_pct",
+        "label": "Ground Ball Rate",
+        "importance": 0.0408,
+        "enet_coeff": -0.0,
+        "direction": "positive"
+      }
+    ],
+    "model_cv_r2": 0.4236,
+    "model_type": "rate"
+  },
+  "R_rate": {
+    "top_predictors": [
+      {
+        "stat": "pa_predictor_season",
+        "label": "Plate Appearances",
+        "importance": 0.1348,
+        "enet_coeff": 0.0056,
+        "direction": "positive"
+      },
+      {
+        "stat": "avg_exit_velocity",
+        "label": "Avg Exit Velocity",
+        "importance": 0.0665,
+        "enet_coeff": 0.0004,
+        "direction": "positive"
+      },
+      {
+        "stat": "max_exit_velocity",
+        "label": "Max Exit Velocity",
+        "importance": 0.0651,
+        "enet_coeff": 0.0021,
+        "direction": "positive"
+      },
+      {
+        "stat": "hard_hit_pct",
+        "label": "Hard Hit Rate",
+        "importance": 0.0607,
+        "enet_coeff": 0.0,
+        "direction": "positive"
+      },
+      {
+        "stat": "barrel_pct",
+        "label": "Barrel Rate",
+        "importance": 0.0563,
+        "enet_coeff": 0.0032,
+        "direction": "positive"
+      },
+      {
+        "stat": "age",
+        "label": "Age",
+        "importance": 0.0529,
+        "enet_coeff": -0.0047,
+        "direction": "negative"
+      },
+      {
+        "stat": "bb_pct",
+        "label": "Walk Rate (BB%)",
+        "importance": 0.0463,
+        "enet_coeff": 0.002,
+        "direction": "positive"
+      },
+      {
+        "stat": "k_pct",
+        "label": "Strikeout Rate (K%)",
+        "importance": 0.0413,
+        "enet_coeff": -0.003,
+        "direction": "negative"
+      }
+    ],
+    "model_cv_r2": 0.1513,
+    "model_type": "rate"
+  },
+  "RBI_rate": {
+    "top_predictors": [
+      {
+        "stat": "avg_exit_velocity",
+        "label": "Avg Exit Velocity",
+        "importance": 0.1015,
+        "enet_coeff": 0.0035,
+        "direction": "positive"
+      },
+      {
+        "stat": "barrel_pct",
+        "label": "Barrel Rate",
+        "importance": 0.0987,
+        "enet_coeff": 0.0053,
+        "direction": "positive"
+      },
+      {
+        "stat": "hard_hit_pct",
+        "label": "Hard Hit Rate",
+        "importance": 0.0923,
+        "enet_coeff": 0.0023,
+        "direction": "positive"
+      },
+      {
+        "stat": "max_exit_velocity",
+        "label": "Max Exit Velocity",
+        "importance": 0.0755,
+        "enet_coeff": 0.0021,
+        "direction": "positive"
+      },
+      {
+        "stat": "fb_pct",
+        "label": "Fly Ball Rate",
+        "importance": 0.0572,
+        "enet_coeff": 0.004,
+        "direction": "positive"
+      },
+      {
+        "stat": "pa_predictor_season",
+        "label": "Plate Appearances",
+        "importance": 0.0531,
+        "enet_coeff": 0.0015,
+        "direction": "positive"
+      },
+      {
+        "stat": "gb_pct",
+        "label": "Ground Ball Rate",
+        "importance": 0.043,
+        "enet_coeff": -0.0,
+        "direction": "positive"
+      },
+      {
+        "stat": "launch_angle_avg",
+        "label": "Avg Launch Angle",
+        "importance": 0.0423,
+        "enet_coeff": 0.0004,
+        "direction": "positive"
+      }
+    ],
+    "model_cv_r2": 0.1901,
+    "model_type": "rate"
+  },
+  "SB_rate": {
+    "top_predictors": [
+      {
+        "stat": "age",
+        "label": "Age",
+        "importance": 0.0937,
+        "enet_coeff": -0.0044,
+        "direction": "negative"
+      },
+      {
+        "stat": "hard_hit_pct",
+        "label": "Hard Hit Rate",
+        "importance": 0.0792,
+        "enet_coeff": -0.0044,
+        "direction": "negative"
+      },
+      {
+        "stat": "avg_exit_velocity",
+        "label": "Avg Exit Velocity",
+        "importance": 0.068,
+        "enet_coeff": -0.0008,
+        "direction": "negative"
+      },
+      {
+        "stat": "max_exit_velocity",
+        "label": "Max Exit Velocity",
+        "importance": 0.0514,
+        "enet_coeff": 0.0019,
+        "direction": "positive"
+      },
+      {
+        "stat": "pa_predictor_season",
+        "label": "Plate Appearances",
+        "importance": 0.0477,
+        "enet_coeff": 0.0022,
+        "direction": "positive"
+      },
+      {
+        "stat": "k_pct",
+        "label": "Strikeout Rate (K%)",
+        "importance": 0.0438,
+        "enet_coeff": 0.0005,
+        "direction": "positive"
+      },
+      {
+        "stat": "o_contact_pct",
+        "label": "Outside Contact Rate",
+        "importance": 0.0437,
+        "enet_coeff": -0.0015,
+        "direction": "negative"
+      },
+      {
+        "stat": "barrel_pct",
+        "label": "Barrel Rate",
+        "importance": 0.0428,
+        "enet_coeff": -0.0011,
+        "direction": "negative"
+      }
+    ],
+    "model_cv_r2": 0.1186,
+    "model_type": "rate"
+  }
+}
