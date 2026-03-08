@@ -1,0 +1,11 @@
+{
+  "buildCommand": "cp -r ../backend api/_backend && npm run build",
+  "functions": {
+    "api/index.py": {
+      "includeFiles": "api/_backend/**"
+    }
+  },
+  "rewrites": [
+    { "source": "/api/:path*", "destination": "/api/index.py" }
+  ]
+}

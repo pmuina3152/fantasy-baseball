@@ -11,12 +11,13 @@ __pycache__/
 frontend/.env.local
 backend/.env
 
-# Caches / data
-backend/cache/
-*.parquet
-*.pkl
-*.pickle
-*.meta
+# Vercel build artefact — backend/ is copied here at deploy time, never commit it
+frontend/api/_backend/
+
+# Analysis pipeline data (large, not needed for the website)
+analysis/data/
+analysis/results/csv/
+analysis/results/json/
 
 # OS
 .DS_Store

@@ -1,0 +1,16 @@
+# Python dependencies for the Vercel serverless function (api/index.py).
+#
+# pybaseball is intentionally excluded — the function reads pre-committed
+# parquet files from api/_backend/cache/ rather than scraping FanGraphs/
+# Baseball Reference at request time.  This keeps the bundle within Vercel's
+# size limits and avoids long cold-start times.
+#
+# To refresh cached stats, run locally (pybaseball lives in backend/requirements.txt),
+# then commit the updated parquet files and redeploy.
+
+fastapi>=0.110
+uvicorn[standard]>=0.27
+pandas>=2.0
+numpy>=1.26
+pyarrow>=14.0
+mangum>=0.17
